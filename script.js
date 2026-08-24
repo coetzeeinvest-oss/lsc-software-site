@@ -85,32 +85,36 @@
   });
 })();
 
-// Catch-the-drop-off mini game in the showcase mock-up: steer the bus
-// between 3 lanes, catch 5 drop-off pins, speed ramps up each catch.
+// Catch-the-drop-off mini game: steer the bus between 3 lanes, catch
+// drop-off pins for points. Runs forever — speed ramps up after every catch
+// until it caps out, and the best run is remembered locally.
 (function initLaneGame() {
   const gameEl = document.getElementById('lane-game');
   const road = document.getElementById('lane-road');
   const bus = document.getElementById('lane-bus');
   const scoreEl = document.getElementById('lane-score');
+  const bestEl = document.getElementById('lane-best');
   const speedLabel = document.getElementById('lane-speed-label');
-  const completeEl = document.getElementById('lane-complete');
-  const restartBtn = document.getElementById('lane-restart');
   const leftBtn = document.getElementById('lane-left');
   const rightBtn = document.getElementById('lane-right');
   if (!gameEl || !road || !bus) return;
 
   const LANES = [16.667, 50, 83.333]; // percent across the road
-  const GOAL = 5;
+  const MAX_FALL_SPEED = 240; // px / second
+  const MIN_SPAWN_INTERVAL = 480; // ms
+  const BEST_KEY = 'liftme-lane-game-best';
 
   let laneIndex = 1;
   let score = 0;
+  let best = Number(localStorage.getItem(BEST_KEY)) || 0;
   let speedLevel = 1;
   let fallSpeed = 60; // px / second
   let spawnInterval = 1500; // ms
   let spawnTimer = 0;
-  let running = false;
   let lastTime = 0;
   let drops = [];
+
+  if (bestEl) bestEl.textContent = String(best);
 
   function setLane(i) {
     laneIndex = Math.max(0, Math.min(2, i));
@@ -139,7 +143,6 @@
   }
 
   function tick(now) {
-    if (!running) return;
     const dt = Math.min(48, now - lastTime);
     lastTime = now;
 
@@ -164,15 +167,15 @@
         drops.splice(i, 1);
         score += 1;
         scoreEl.textContent = String(score);
-        fallSpeed += 18;
-        spawnInterval = Math.max(650, spawnInterval - 110);
+        if (score > best) {
+          best = score;
+          if (bestEl) bestEl.textContent = String(best);
+          localStorage.setItem(BEST_KEY, String(best));
+        }
+        fallSpeed = Math.min(MAX_FALL_SPEED, fallSpeed + 14);
+        spawnInterval = Math.max(MIN_SPAWN_INTERVAL, spawnInterval - 90);
         speedLevel += 1;
         speedLabel.textContent = 'Speed ' + speedLevel;
-        if (score >= GOAL) {
-          running = false;
-          road.classList.add('finished');
-          return;
-        }
       } else if (d.y > roadH + 10) {
         d.el.remove();
         drops.splice(i, 1);
@@ -182,26 +185,12 @@
     requestAnimationFrame(tick);
   }
 
-  function reset() {
-    drops.forEach((d) => d.el.remove());
-    drops = [];
-    score = 0;
-    speedLevel = 1;
-    fallSpeed = 60;
-    spawnInterval = 1500;
-    spawnTimer = 0;
-    scoreEl.textContent = '0';
-    speedLabel.textContent = 'Speed 1';
-    road.classList.remove('finished');
-    setLane(1);
-    running = true;
-    lastTime = performance.now();
-    requestAnimationFrame(tick);
-  }
-
   leftBtn.addEventListener('click', () => setLane(laneIndex - 1));
   rightBtn.addEventListener('click', () => setLane(laneIndex + 1));
-  restartBtn.addEventListener('click', reset);
+
+  setLane(1);
+  lastTime = performance.now();
+  requestAnimationFrame(tick);
 
   let touchStartX = null;
   road.addEventListener(
@@ -230,8 +219,6 @@
     else return;
     e.preventDefault();
   });
-
-  reset();
 })();
 
 // Mobile nav: hamburger toggle + drawer of links (all links stay reachable

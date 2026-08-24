@@ -41,6 +41,7 @@
       <span class="maker">by LSC Software</span>
     </a>
     <div class="nav-links" id="nav-links">
+      <a href="#play" data-page="index.html">Play the game</a>
       <a href="#features" data-page="index.html">Features</a>
       <a href="#showcase" data-page="index.html">See it in action</a>
       <a href="#pricing" data-page="index.html">Pricing</a>
@@ -103,6 +104,39 @@
     </div>
   </header>
 
+</div>
+
+<section id="play" class="play-band">
+  <div class="wrap play-wrap">
+    <div class="play-copy reveal">
+      <span class="eyebrow play-eyebrow">Try it</span>
+      <h2>Think you can keep up with the school run?</h2>
+      <p>Steer the bus across three lanes and catch as many drop-offs as you can. No finish line — it just keeps getting faster.</p>
+    </div>
+    <div class="mock play-card reveal">
+      <div class="mock-chrome"><span></span><span></span><span></span></div>
+      <div class="mock-body">
+        <div class="lane-game" id="lane-game">
+          <div class="lane-hud">
+            <span>Score <strong id="lane-score">0</strong></span>
+            <span>Best <strong id="lane-best">0</strong></span>
+            <span class="lane-speed" id="lane-speed-label">Speed 1</span>
+          </div>
+          <div class="lane-road" id="lane-road">
+            <div class="lane-bus" id="lane-bus" style="left:50%"><svg class="icon"><use href="#icon-van"></use></svg></div>
+          </div>
+          <div class="lane-controls">
+            <button type="button" class="lane-btn" id="lane-left" aria-label="Move left"><svg class="icon"><use href="#icon-chevron-left"></use></svg></button>
+            <button type="button" class="lane-btn" id="lane-right" aria-label="Move right"><svg class="icon"><use href="#icon-chevron-right"></use></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
   <section id="features">
     <div class="section-head reveal">
       <div class="section-eyebrow">What's included</div>
@@ -151,31 +185,40 @@
     </div>
     <div class="showcase reveal-stagger">
 
-      <div class="mock">
+      <div class="mock device-mock">
         <div class="mock-chrome"><span></span><span></span><span></span></div>
-        <div class="mock-body">
-          <div class="lane-game" id="lane-game">
-            <div class="lane-hud">
-              <span>Drop-offs: <strong id="lane-score">0</strong>/5</span>
-              <span class="lane-speed" id="lane-speed-label">Speed 1</span>
-            </div>
-            <div class="lane-road" id="lane-road">
-              <div class="lane-bus" id="lane-bus" style="left:50%"><svg class="icon"><use href="#icon-van"></use></svg></div>
-              <div class="lane-complete" id="lane-complete">
-                <strong>5 drop-offs caught</strong>
-                <p>That's the pace a real LiftMe route runs at.</p>
-                <button type="button" class="btn btn-amber" id="lane-restart">Play again</button>
-              </div>
-            </div>
-            <div class="lane-controls">
-              <button type="button" class="lane-btn" id="lane-left" aria-label="Move left"><svg class="icon"><use href="#icon-chevron-left"></use></svg></button>
-              <button type="button" class="lane-btn" id="lane-right" aria-label="Move right"><svg class="icon"><use href="#icon-chevron-right"></use></svg></button>
+        <div class="mock-body device-mock-body">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen placeholder-screen">
+              <svg class="icon"><use href="#icon-camera"></use></svg>
+              <p>Add a phone screenshot</p>
             </div>
           </div>
         </div>
         <div class="mock-caption">
-          <span class="who">Try it — catch the drop-offs</span>
-          <p>Steer the bus between lanes with the arrows, swipe, or ← → keys. Speed ramps up with every catch.</p>
+          <span class="who">On a phone</span>
+          <p>Real screenshot of the parent portal, on your subdomain.</p>
+        </div>
+      </div>
+
+      <div class="mock device-mock">
+        <div class="mock-chrome"><span></span><span></span><span></span></div>
+        <div class="mock-body device-mock-body">
+          <div class="pc-frame">
+            <div class="pc-bar">
+              <span></span><span></span><span></span>
+              <div class="pc-url">yourcompany.liftme.co.za</div>
+            </div>
+            <div class="pc-screen placeholder-screen">
+              <svg class="icon"><use href="#icon-camera"></use></svg>
+              <p>Add a desktop screenshot</p>
+            </div>
+          </div>
+        </div>
+        <div class="mock-caption">
+          <span class="who">On a computer</span>
+          <p>Real screenshot of the admin dispatch board.</p>
         </div>
       </div>
 
