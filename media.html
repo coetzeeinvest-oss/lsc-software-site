@@ -17,6 +17,15 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="icon-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10.5 21 7.5v9L16 13.5Z"/></symbol>
+    <symbol id="icon-camera" viewBox="0 0 24 24"><path d="M4 8.5h3l1.5-2.5h7L17 8.5h3a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 18v-8A1.5 1.5 0 0 1 4 8.5Z"/><circle cx="12" cy="14" r="3.4"/></symbol>
+    <symbol id="icon-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M4 17.5 9 12l3.5 3.5L16 12l4.5 5.5"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="M7 5.5v13l11-6.5Z"/></symbol>
+  </defs>
+</svg>
+
 <nav class="topbar">
   <div class="topbar-inner">
     <a href="index.html" class="wordmark">
@@ -54,7 +63,9 @@
     <div class="media-grid reveal-stagger">
 
       <div class="media-tile" data-media-category="video">
-        <div class="media-thumb video tone-navy">🎬</div>
+        <div class="media-thumb video tone-navy">
+          <video controls preload="metadata" playsinline src="media/videos/liftme-in-60-seconds.mov"></video>
+        </div>
         <div class="media-info">
           <div class="m-title">LiftMe in 60 seconds</div>
           <div class="m-desc">Product walkthrough — dispatch to drop-off</div>
@@ -62,7 +73,9 @@
       </div>
 
       <div class="media-tile" data-media-category="video">
-        <div class="media-thumb video tone-navy">🎬</div>
+        <div class="media-thumb video tone-navy">
+          <video controls preload="metadata" playsinline src="media/videos/liftme-driver-app.mov"></video>
+        </div>
         <div class="media-info">
           <div class="m-title">Driver app, on the road</div>
           <div class="m-desc">A real morning route from the driver's seat</div>
@@ -70,7 +83,7 @@
       </div>
 
       <div class="media-tile" data-media-category="photo">
-        <div class="media-thumb tone-amber">📷</div>
+        <div class="media-thumb tone-amber"><svg class="icon icon-lg"><use href="#icon-camera"></use></svg></div>
         <div class="media-info">
           <div class="m-title">Pickup at the school gate</div>
           <div class="m-desc">Morning drop-off, Fernwood Primary</div>
@@ -78,7 +91,7 @@
       </div>
 
       <div class="media-tile" data-media-category="photo">
-        <div class="media-thumb tone-amber">📷</div>
+        <div class="media-thumb tone-amber"><svg class="icon icon-lg"><use href="#icon-camera"></use></svg></div>
         <div class="media-info">
           <div class="m-title">Driver checking the route</div>
           <div class="m-desc">Live tracking open on the driver's phone</div>
@@ -86,7 +99,7 @@
       </div>
 
       <div class="media-tile" data-media-category="poster">
-        <div class="media-thumb tone-teal">🖼️</div>
+        <div class="media-thumb tone-teal"><svg class="icon icon-lg"><use href="#icon-image"></use></svg></div>
         <div class="media-info">
           <div class="m-title">"Know where they are" poster</div>
           <div class="m-desc">A4, for the school notice board</div>
@@ -94,7 +107,7 @@
       </div>
 
       <div class="media-tile" data-media-category="poster">
-        <div class="media-thumb tone-teal">🖼️</div>
+        <div class="media-thumb tone-teal"><svg class="icon icon-lg"><use href="#icon-image"></use></svg></div>
         <div class="media-info">
           <div class="m-title">Operator sign-up flyer</div>
           <div class="m-desc">A5, for transport businesses</div>

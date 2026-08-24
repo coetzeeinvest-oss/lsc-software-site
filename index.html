@@ -12,6 +12,25 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.4 7-11.5A7 7 0 0 0 5 9.5C5 14.6 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.6 2.5-6 5.5-6s5.5 2.4 5.5 6"/><circle cx="17.5" cy="9" r="2.3"/><path d="M15.2 14.3c2.4.4 4.3 2.5 4.3 5.7"/></symbol>
+    <symbol id="icon-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-2.5-1.6L13 21l-2.5-1.6L8 21l-2-1.6V3Z"/><path d="M9 8h6M9 12h6M9 16h3.5"/></symbol>
+    <symbol id="icon-palette" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1 0 1.8-.8 1.8-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-1 .8-1.8 1.8-1.8H16a4.5 4.5 0 0 0 4.5-4.5C20.5 6.7 16.7 3.5 12 3.5Z"/><circle cx="7.5" cy="10.5" r="1.1"/><circle cx="9.5" cy="7" r="1.1"/><circle cx="14.5" cy="7" r="1.1"/><circle cx="16.5" cy="10.5" r="1.1"/></symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 10.5a6 6 0 0 1 12 0c0 4 1.3 5.3 2 6H4c.7-.7 2-2 2-6Z"/><path d="M9.5 19.5a2.5 2.5 0 0 0 5 0"/></symbol>
+    <symbol id="icon-van" viewBox="0 0 24 24"><path d="M3 15.5V9a1.5 1.5 0 0 1 1.5-1.5h9L18 11h2.5A1.5 1.5 0 0 1 22 12.5v3H3Z"/><circle cx="8" cy="16.5" r="1.7"/><circle cx="17.5" cy="16.5" r="1.7"/><path d="M13.5 7.5v4"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20 15 15"/></symbol>
+    <symbol id="icon-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10.5 21 7.5v9L16 13.5Z"/></symbol>
+    <symbol id="icon-camera" viewBox="0 0 24 24"><path d="M4 8.5h3l1.5-2.5h7L17 8.5h3a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 18v-8A1.5 1.5 0 0 1 4 8.5Z"/><circle cx="12" cy="14" r="3.4"/></symbol>
+    <symbol id="icon-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M4 17.5 9 12l3.5 3.5L16 12l4.5 5.5"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="M7 5.5v13l11-6.5Z"/></symbol>
+    <symbol id="icon-tilt" viewBox="0 0 24 24"><ellipse cx="12" cy="17" rx="7" ry="2.3"/><path d="M12 3v11M12 3l-3 3M12 3l3 3"/></symbol>
+  </defs>
+</svg>
+
 <nav class="topbar">
   <div class="topbar-inner">
     <a href="#top" class="wordmark">
@@ -45,32 +64,32 @@
 
     <div class="hero-art" aria-hidden="true">
       <div class="hero-art-head">
-        <span>Tuesday · Morning route</span>
-        <span class="pill">Live</span>
+        <span>This week's schedule</span>
+        <span class="pill">Preview</span>
+      </div>
+      <div class="route-stop">
+        <span class="route-dot"></span>
+        <div class="route-stop-body">
+          <div class="route-stop-name">Tomorrow · Morning route</div>
+          <div class="route-stop-meta">To Fernwood Primary · 3 learners</div>
+        </div>
+        <span class="route-stop-time">Scheduled</span>
+      </div>
+      <div class="route-stop">
+        <span class="route-dot"></span>
+        <div class="route-stop-body">
+          <div class="route-stop-name">Tomorrow · Afternoon route</div>
+          <div class="route-stop-meta">From Oakhurst High · 2 learners</div>
+        </div>
+        <span class="route-stop-time">Scheduled</span>
       </div>
       <div class="route-stop done">
         <span class="route-dot"></span>
         <div class="route-stop-body">
-          <div class="route-stop-name">Ridgeway Close, pickup</div>
-          <div class="route-stop-meta">2 learners · dropped off</div>
+          <div class="route-stop-name">Monday · Morning route</div>
+          <div class="route-stop-meta">To Fernwood Primary · completed</div>
         </div>
         <span class="route-stop-time">06:42</span>
-      </div>
-      <div class="route-stop done">
-        <span class="route-dot"></span>
-        <div class="route-stop-body">
-          <div class="route-stop-name">Oak Avenue, pickup</div>
-          <div class="route-stop-meta">1 learner · dropped off</div>
-        </div>
-        <span class="route-stop-time">06:51</span>
-      </div>
-      <div class="route-stop active">
-        <span class="route-dot"></span>
-        <div class="route-stop-body">
-          <div class="route-stop-name">Fernwood Primary</div>
-          <div class="route-stop-meta">En route · 4 min away</div>
-        </div>
-        <span class="route-stop-time">07:05</span>
       </div>
     </div>
   </header>
@@ -83,32 +102,32 @@
     </div>
     <div class="feature-grid reveal-stagger">
       <div class="feature-card">
-        <div class="feature-icon">🗓️</div>
+        <div class="feature-icon"><svg class="icon"><use href="#icon-calendar"></use></svg></div>
         <h3>Scheduling &amp; dispatch</h3>
         <p>Recurring weekly routes, to-school and from-school, with driver assignment and status tracking from scheduled through to dropped off.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📍</div>
+        <div class="feature-icon"><svg class="icon"><use href="#icon-pin"></use></svg></div>
         <h3>Live tracking</h3>
         <p>Parents see the vehicle move in real time; drivers log pickups, drop-offs and exceptions from the road.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">👨‍👩‍👧</div>
+        <div class="feature-icon"><svg class="icon"><use href="#icon-users"></use></svg></div>
         <h3>Parent portal</h3>
         <p>Upcoming trips, live status per child, and a weekly schedule view — no phone calls to the office.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🧾</div>
+        <div class="feature-icon"><svg class="icon"><use href="#icon-receipt"></use></svg></div>
         <h3>Invoicing &amp; billing</h3>
         <p>Distance-based pricing tiers per school, VAT-ready client invoices, generated straight from completed trips.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🎨</div>
+        <div class="feature-icon"><svg class="icon"><use href="#icon-palette"></use></svg></div>
         <h3>Your own branding</h3>
         <p>Logo, colour palette and fonts on your subdomain — parents see your business, not ours.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🔔</div>
+        <div class="feature-icon"><svg class="icon"><use href="#icon-bell"></use></svg></div>
         <h3>Notifications</h3>
         <p>Schedule changes, delays and confirmations reach parents and drivers automatically.</p>
       </div>
@@ -127,9 +146,13 @@
         <div class="mock-chrome"><span></span><span></span><span></span></div>
         <div class="mock-body">
           <div class="mock-map">
-            <div class="map-pin" style="top:34px; left:30px;"></div>
-            <div class="map-pin" style="top:150px; left:210px;"></div>
-            <div class="map-van">🚐</div>
+            <div class="mock-map-float">
+              <div class="mock-map-tilt">
+                <div class="map-pin" style="top:34px; left:30px;"></div>
+                <div class="map-pin" style="top:150px; left:210px;"></div>
+                <div class="map-van"><svg class="icon"><use href="#icon-van"></use></svg></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="mock-caption">
@@ -198,10 +221,10 @@
         <p class="for">One or two vehicles, one owner-driver doing it all.</p>
         <div class="price-line"><span class="amt">R499</span><span class="per">/ month</span></div>
         <ul>
-          <li>Up to 2 vehicles</li>
-          <li>Scheduling &amp; dispatch</li>
-          <li>Parent portal &amp; notifications</li>
-          <li>Logo + accent colour branding</li>
+          <li><svg class="icon icon-check"><use href="#icon-check"></use></svg>Up to 2 vehicles</li>
+          <li><svg class="icon icon-check"><use href="#icon-check"></use></svg>Scheduling &amp; dispatch</li>
+          <li><svg class="icon icon-check"><use href="#icon-check"></use></svg>Parent portal &amp; notifications</li>
+          <li><svg class="icon icon-check"><use href="#icon-check"></use></svg>Logo + accent colour branding</li>
         </ul>
         <a href="mailto:hello@liftme.co.za?subject=LiftMe%20Bakkie%20plan" class="btn btn-ghost">Get started</a>
       </div>
@@ -211,10 +234,10 @@
         <p class="for">A handful of drivers, real routes, live tracking.</p>
         <div class="price-line"><span class="amt">R1,299</span><span class="per">/ month</span></div>
         <ul>
-          <li>Up to 8 vehicles</li>
-          <li>Live GPS tracking</li>
-          <li>Optimised route stops</li>
-          <li>Full theme &amp; font branding</li>
+          <li><svg class="icon icon-check"><use href="#icon-check"></use></svg>Up to 8 vehicles</li>
+          <li><svg class="icon icon-check"><use href="#icon-check"></use></svg>Live GPS tracking</li>
+          <li><svg class="icon icon-check"><use href="#icon-check"></use></svg>Optimised route stops</li>
+          <li><svg class="icon icon-check"><use href="#icon-check"></use></svg>Full theme &amp; font branding</li>
         </ul>
         <a href="mailto:hello@liftme.co.za?subject=LiftMe%20Fleet%20plan" class="btn btn-amber">Get started</a>
       </div>
@@ -223,10 +246,10 @@
         <p class="for">Multiple branches or schools, full invoicing.</p>
         <div class="price-line"><span class="amt">R2,799</span><span class="per">/ month</span></div>
         <ul>
-          <li>Unlimited vehicles</li>
-          <li>Client invoicing &amp; VAT</li>
-          <li>Per-school pricing tiers</li>
-          <li>Priority support</li>
+          <li><svg class="icon icon-check"><use href="#icon-check"></use></svg>Unlimited vehicles</li>
+          <li><svg class="icon icon-check"><use href="#icon-check"></use></svg>Client invoicing &amp; VAT</li>
+          <li><svg class="icon icon-check"><use href="#icon-check"></use></svg>Per-school pricing tiers</li>
+          <li><svg class="icon icon-check"><use href="#icon-check"></use></svg>Priority support</li>
         </ul>
         <a href="mailto:hello@liftme.co.za?subject=LiftMe%20Depot%20plan" class="btn btn-ghost">Get started</a>
       </div>
@@ -241,6 +264,7 @@
     </div>
     <div class="finder-panel reveal">
       <div class="finder-search">
+        <svg class="icon finder-search-icon"><use href="#icon-search"></use></svg>
         <input id="finder-input" type="text" placeholder="Search by company or school name…" autocomplete="off">
       </div>
       <div id="finder-results" class="finder-results"></div>
