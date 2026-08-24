@@ -85,66 +85,180 @@
   });
 })();
 
-// Gyroscope-driven parallax for the live-tracking map mock-up: pins and van
-// drift with the phone's tilt, layered on top of the ambient CSS float so the
-// two `transform` animations don't fight on the same element.
-(function initGyroMap() {
-  const stage = document.querySelector('.mock-map');
-  const layer = document.querySelector('.mock-map-tilt');
-  if (!stage || !layer) return;
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+// Catch-the-drop-off mini game in the showcase mock-up: steer the bus
+// between 3 lanes, catch 5 drop-off pins, speed ramps up each catch.
+(function initLaneGame() {
+  const gameEl = document.getElementById('lane-game');
+  const road = document.getElementById('lane-road');
+  const bus = document.getElementById('lane-bus');
+  const scoreEl = document.getElementById('lane-score');
+  const speedLabel = document.getElementById('lane-speed-label');
+  const completeEl = document.getElementById('lane-complete');
+  const restartBtn = document.getElementById('lane-restart');
+  const leftBtn = document.getElementById('lane-left');
+  const rightBtn = document.getElementById('lane-right');
+  if (!gameEl || !road || !bus) return;
 
-  const MAX_OFFSET = 12; // px
-  let targetX = 0;
-  let targetY = 0;
-  let curX = 0;
-  let curY = 0;
+  const LANES = [16.667, 50, 83.333]; // percent across the road
+  const GOAL = 5;
+
+  let laneIndex = 1;
+  let score = 0;
+  let speedLevel = 1;
+  let fallSpeed = 60; // px / second
+  let spawnInterval = 1500; // ms
+  let spawnTimer = 0;
   let running = false;
+  let lastTime = 0;
+  let drops = [];
 
-  function onTilt(e) {
-    const beta = e.beta || 0; // front-back tilt
-    const gamma = e.gamma || 0; // left-right tilt
-    targetX = Math.max(-1, Math.min(1, gamma / 30)) * MAX_OFFSET;
-    targetY = Math.max(-1, Math.min(1, (beta - 45) / 30)) * MAX_OFFSET;
+  function setLane(i) {
+    laneIndex = Math.max(0, Math.min(2, i));
+    bus.style.left = LANES[laneIndex] + '%';
   }
 
-  function tick() {
-    curX += (targetX - curX) * 0.08;
-    curY += (targetY - curY) * 0.08;
-    layer.style.transform = `translate(${curX.toFixed(2)}px, ${curY.toFixed(2)}px)`;
+  function spawnDrop() {
+    const lane = Math.floor(Math.random() * 3);
+    const el = document.createElement('div');
+    el.className = 'lane-drop';
+    el.style.left = LANES[lane] + '%';
+    el.style.top = '-24px';
+    el.innerHTML = '<svg class="icon"><use href="#icon-pin"></use></svg>';
+    road.appendChild(el);
+    drops.push({ el, lane, y: -24 });
+  }
+
+  function pop(xPercent, y) {
+    const el = document.createElement('div');
+    el.className = 'lane-pop';
+    el.textContent = '+1';
+    el.style.left = xPercent + '%';
+    el.style.top = y + 'px';
+    road.appendChild(el);
+    setTimeout(() => el.remove(), 650);
+  }
+
+  function tick(now) {
+    if (!running) return;
+    const dt = Math.min(48, now - lastTime);
+    lastTime = now;
+
+    spawnTimer += dt;
+    if (spawnTimer >= spawnInterval) {
+      spawnTimer = 0;
+      spawnDrop();
+    }
+
+    const roadH = road.clientHeight;
+    const catchTop = roadH - 62;
+    const catchBottom = roadH - 4;
+
+    for (let i = drops.length - 1; i >= 0; i--) {
+      const d = drops[i];
+      d.y += (fallSpeed * dt) / 1000;
+      d.el.style.top = d.y + 'px';
+
+      if (d.y >= catchTop && d.y <= catchBottom && d.lane === laneIndex) {
+        pop(LANES[d.lane], d.y);
+        d.el.remove();
+        drops.splice(i, 1);
+        score += 1;
+        scoreEl.textContent = String(score);
+        fallSpeed += 18;
+        spawnInterval = Math.max(650, spawnInterval - 110);
+        speedLevel += 1;
+        speedLabel.textContent = 'Speed ' + speedLevel;
+        if (score >= GOAL) {
+          running = false;
+          road.classList.add('finished');
+          return;
+        }
+      } else if (d.y > roadH + 10) {
+        d.el.remove();
+        drops.splice(i, 1);
+      }
+    }
+
     requestAnimationFrame(tick);
   }
 
-  function start() {
-    if (running) return;
+  function reset() {
+    drops.forEach((d) => d.el.remove());
+    drops = [];
+    score = 0;
+    speedLevel = 1;
+    fallSpeed = 60;
+    spawnInterval = 1500;
+    spawnTimer = 0;
+    scoreEl.textContent = '0';
+    speedLabel.textContent = 'Speed 1';
+    road.classList.remove('finished');
+    setLane(1);
     running = true;
-    window.addEventListener('deviceorientation', onTilt);
+    lastTime = performance.now();
     requestAnimationFrame(tick);
   }
 
-  const needsPermission =
-    typeof DeviceOrientationEvent !== 'undefined' &&
-    typeof DeviceOrientationEvent.requestPermission === 'function';
+  leftBtn.addEventListener('click', () => setLane(laneIndex - 1));
+  rightBtn.addEventListener('click', () => setLane(laneIndex + 1));
+  restartBtn.addEventListener('click', reset);
 
-  if (needsPermission) {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'tilt-enable';
-    btn.innerHTML = '<svg class="icon"><use href="#icon-tilt"></use></svg>Tap to tilt';
-    stage.appendChild(btn);
-    btn.addEventListener('click', () => {
-      DeviceOrientationEvent.requestPermission()
-        .then((res) => {
-          if (res === 'granted') {
-            start();
-            btn.remove();
-          }
-        })
-        .catch(() => {});
-    });
-  } else if (window.DeviceOrientationEvent) {
-    start();
+  let touchStartX = null;
+  road.addEventListener(
+    'touchstart',
+    (e) => {
+      touchStartX = e.touches[0].clientX;
+    },
+    { passive: true }
+  );
+  road.addEventListener('touchend', (e) => {
+    if (touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 24) setLane(laneIndex + (dx > 0 ? 1 : -1));
+    touchStartX = null;
+  });
+
+  // Arrow keys only act while the widget is hovered, so the game doesn't
+  // hijack normal page scrolling for the rest of the site.
+  let hovering = false;
+  gameEl.addEventListener('mouseenter', () => { hovering = true; });
+  gameEl.addEventListener('mouseleave', () => { hovering = false; });
+  document.addEventListener('keydown', (e) => {
+    if (!hovering) return;
+    if (e.key === 'ArrowLeft') setLane(laneIndex - 1);
+    else if (e.key === 'ArrowRight') setLane(laneIndex + 1);
+    else return;
+    e.preventDefault();
+  });
+
+  reset();
+})();
+
+// Mobile nav: hamburger toggle + drawer of links (all links stay reachable
+// on small screens instead of disappearing).
+(function initNavToggle() {
+  const topbar = document.querySelector('.topbar');
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.getElementById('nav-links');
+  if (!topbar || !toggle || !links) return;
+
+  function setOpen(open) {
+    topbar.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   }
+
+  toggle.addEventListener('click', () => {
+    setOpen(!topbar.classList.contains('open'));
+  });
+
+  links.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => setOpen(false));
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 661) setOpen(false);
+  });
 })();
 
 // Highlight the current nav link on the media page

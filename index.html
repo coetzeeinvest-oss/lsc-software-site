@@ -27,7 +27,10 @@
     <symbol id="icon-camera" viewBox="0 0 24 24"><path d="M4 8.5h3l1.5-2.5h7L17 8.5h3a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 18v-8A1.5 1.5 0 0 1 4 8.5Z"/><circle cx="12" cy="14" r="3.4"/></symbol>
     <symbol id="icon-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="M4 17.5 9 12l3.5 3.5L16 12l4.5 5.5"/></symbol>
     <symbol id="icon-play" viewBox="0 0 24 24"><path d="M7 5.5v13l11-6.5Z"/></symbol>
-    <symbol id="icon-tilt" viewBox="0 0 24 24"><ellipse cx="12" cy="17" rx="7" ry="2.3"/><path d="M12 3v11M12 3l-3 3M12 3l3 3"/></symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
   </defs>
 </svg>
 
@@ -37,13 +40,19 @@
       <span class="product">LiftMe</span>
       <span class="maker">by LSC Software</span>
     </a>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="#features" data-page="index.html">Features</a>
       <a href="#showcase" data-page="index.html">See it in action</a>
       <a href="#pricing" data-page="index.html">Pricing</a>
       <a href="#find-portal" data-page="index.html">Find my company</a>
       <a href="media.html" data-page="media.html">Media</a>
+    </div>
+    <div class="nav-actions">
       <a href="mailto:hello@liftme.co.za" class="btn btn-amber">Book a demo</a>
+      <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <svg class="icon icon-menu"><use href="#icon-menu"></use></svg>
+        <svg class="icon icon-close"><use href="#icon-close"></use></svg>
+      </button>
     </div>
   </div>
 </nav>
@@ -145,19 +154,28 @@
       <div class="mock">
         <div class="mock-chrome"><span></span><span></span><span></span></div>
         <div class="mock-body">
-          <div class="mock-map">
-            <div class="mock-map-float">
-              <div class="mock-map-tilt">
-                <div class="map-pin" style="top:34px; left:30px;"></div>
-                <div class="map-pin" style="top:150px; left:210px;"></div>
-                <div class="map-van"><svg class="icon"><use href="#icon-van"></use></svg></div>
+          <div class="lane-game" id="lane-game">
+            <div class="lane-hud">
+              <span>Drop-offs: <strong id="lane-score">0</strong>/5</span>
+              <span class="lane-speed" id="lane-speed-label">Speed 1</span>
+            </div>
+            <div class="lane-road" id="lane-road">
+              <div class="lane-bus" id="lane-bus" style="left:50%"><svg class="icon"><use href="#icon-van"></use></svg></div>
+              <div class="lane-complete" id="lane-complete">
+                <strong>5 drop-offs caught</strong>
+                <p>That's the pace a real LiftMe route runs at.</p>
+                <button type="button" class="btn btn-amber" id="lane-restart">Play again</button>
               </div>
+            </div>
+            <div class="lane-controls">
+              <button type="button" class="lane-btn" id="lane-left" aria-label="Move left"><svg class="icon"><use href="#icon-chevron-left"></use></svg></button>
+              <button type="button" class="lane-btn" id="lane-right" aria-label="Move right"><svg class="icon"><use href="#icon-chevron-right"></use></svg></button>
             </div>
           </div>
         </div>
         <div class="mock-caption">
-          <span class="who">Live tracking</span>
-          <p>Parents watch the vehicle move stop to stop, in real time.</p>
+          <span class="who">Try it — catch the drop-offs</span>
+          <p>Steer the bus between lanes with the arrows, swipe, or ← → keys. Speed ramps up with every catch.</p>
         </div>
       </div>
 
