@@ -592,12 +592,12 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
   height: 100%;
   border-radius: 18px;
   overflow: hidden;
-  padding: 6px;
+  padding: 2px;
   background: var(--bg);
   box-sizing: border-box;
 }
 
-.phone-screen img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 12px; }
+.phone-screen img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 16px; }
 
 .pc-frame {
   width: 100%;
@@ -634,12 +634,12 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
 
 .pc-screen {
   aspect-ratio: 1878 / 956;
-  padding: 10px;
+  padding: 4px;
   background: var(--bg);
   box-sizing: border-box;
 }
 
-.pc-screen img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 6px; }
+.pc-screen img { width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 4px; }
 
 /* ---------- Play band: full-bleed, eye-catching mini-game section ---------- */
 
