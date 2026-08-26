@@ -279,6 +279,19 @@ nav.topbar {
   animation: pulse-dot 2.2s ease-in-out infinite;
 }
 
+/* Page-title pill: sticks below the top nav for the whole page, the same
+   way the nav itself stays put while the page scrolls underneath it. */
+.page-pill {
+  position: sticky;
+  top: 82px;
+  z-index: 25;
+  display: flex;
+  justify-content: center;
+  padding: 16px clamp(20px, 4vw, 48px) 0;
+}
+
+.page-pill .eyebrow { margin-bottom: 0; }
+
 h1 {
   font-family: var(--font-display);
   font-weight: 700;
