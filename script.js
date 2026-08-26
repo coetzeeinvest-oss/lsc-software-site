@@ -34,7 +34,7 @@
       results.innerHTML = `
         <div class="finder-empty">
           Can't see your company listed?
-          <a href="mailto:hello@liftme.co.za?subject=Which%20LiftMe%20company%20am%20I%20looking%20for%3F&body=My%20child%27s%20school%20or%20transport%20company%20is%3A%20">Ask us to find it</a>
+          <a href="mailto:liftme.demo@gmail.com?subject=Which%20LiftMe%20company%20am%20I%20looking%20for%3F&body=My%20child%27s%20school%20or%20transport%20company%20is%3A%20">Ask us to find it</a>
         </div>`;
       return;
     }
@@ -210,7 +210,7 @@
     ].filter((l) => l !== null);
     const body = encodeURIComponent(bodyLines.join('\n'));
 
-    window.location.href = `mailto:hello@liftme.co.za?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:liftme.demo@gmail.com?subject=${subject}&body=${body}`;
   });
 })();
 
