@@ -565,7 +565,7 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
   padding: 28px 22px;
 }
 
-.device-mock-body.hand-body { padding: 28px 34px 62px; }
+.device-mock-body.hand-body { padding: 28px 22px 88px; }
 
 .phone-frame {
   width: 132px;
@@ -637,81 +637,100 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
 
 .pc-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* Mock: phone screenshots shown held in a hand, not a bare device frame */
+/* Mock: phone screenshots shown held in a hand, not a bare device frame.
+   Fingers wrap the left edge from behind, thumb rests on the right edge
+   in front, and the palm forms the base — a plausible one-handed grip
+   built entirely from gradients and border-radius, no image assets. */
 
 .phone-hand {
   position: relative;
-  width: 200px;
+  width: 212px;
   margin: 0 auto;
-  padding-top: 34px;
 }
 
 .phone-hand .phone-frame { position: relative; z-index: 2; margin: 0 auto; }
 
-.phone-hand .hand-fingers {
+.phone-hand .fingers {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 96px;
+  left: 16px;
+  top: 32px;
   display: flex;
-  justify-content: space-between;
-  z-index: 1;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 3;
 }
 
 .phone-hand .finger {
-  width: 22px;
-  border-radius: 11px 11px 5px 5px;
-  background: linear-gradient(180deg, #ecc39d, #d3a06e);
-  box-shadow: inset 0 -4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 27px;
+  border-radius: 15px 8px 8px 15px;
+  background: linear-gradient(100deg, #ca905f 0%, #eccaa2 45%, #dba873 100%);
+  box-shadow: inset -4px 0 5px rgba(120, 74, 34, 0.28), inset 0 1px 2px rgba(255, 255, 255, 0.4);
 }
 
-.phone-hand .finger.f1 { height: 36px; margin-top: 16px; }
-.phone-hand .finger.f2 { height: 48px; }
-.phone-hand .finger.f3 { height: 40px; margin-top: 10px; }
+.phone-hand .finger.f1 { height: 24px; }
+.phone-hand .finger.f2 { height: 29px; }
+.phone-hand .finger.f3 { height: 26px; }
+.phone-hand .finger.f4 { height: 19px; }
 
 .phone-hand .thumb {
   position: absolute;
-  right: -4px;
-  bottom: 50px;
-  width: 34px;
-  height: 76px;
-  border-radius: 17px;
-  background: linear-gradient(135deg, #ecc39d, #d3a06e);
-  transform: rotate(-24deg);
+  right: 15px;
+  bottom: 66px;
+  width: 32px;
+  height: 80px;
+  border-radius: 40% 60% 60% 40% / 55% 55% 45% 45%;
+  background: linear-gradient(115deg, #dba873 0%, #eccaa2 45%, #caa06e 100%);
+  transform: rotate(-11deg);
+  transform-origin: bottom center;
   z-index: 3;
-  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.1), 0 6px 12px -6px rgba(3, 4, 94, 0.3);
+  box-shadow: inset 3px 0 5px rgba(120, 74, 34, 0.22), inset 0 -2px 3px rgba(255, 255, 255, 0.3), 0 8px 14px -8px rgba(3, 4, 94, 0.35);
 }
 
 .phone-hand .palm {
   position: absolute;
-  left: -16px;
-  right: -16px;
-  bottom: -46px;
-  height: 130px;
-  border-radius: 64px 64px 24px 24px;
-  background: linear-gradient(180deg, #ecc39d, #c48d61);
+  left: -4px;
+  right: 0;
+  bottom: -54px;
+  height: 128px;
+  border-radius: 58% 52% 32% 42% / 68% 62% 38% 42%;
+  background: linear-gradient(165deg, #eccaa2 0%, #d3a06e 55%, #bd875a 100%);
   z-index: 0;
-  box-shadow: 0 24px 38px -20px rgba(3, 4, 94, 0.4);
+}
+
+.phone-hand .palm::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  transform: translateX(-50%);
+  width: 62%;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(3, 4, 94, 0.28), transparent 72%);
+  filter: blur(1px);
+  z-index: -1;
 }
 
 /* Larger variant for the hero, where the phone is the whole visual */
 
-.phone-hand.hero-size { width: 250px; padding-top: 42px; }
+.phone-hand.hero-size { width: 272px; }
 .phone-hand.hero-size .phone-frame.hero-phone-frame { width: 172px; }
-.phone-hand.hero-size .hand-fingers { width: 124px; }
-.phone-hand.hero-size .finger { width: 28px; }
-.phone-hand.hero-size .finger.f1 { height: 46px; margin-top: 20px; }
-.phone-hand.hero-size .finger.f2 { height: 62px; }
-.phone-hand.hero-size .finger.f3 { height: 52px; margin-top: 12px; }
-.phone-hand.hero-size .thumb { right: -6px; bottom: 66px; width: 44px; height: 98px; border-radius: 22px; }
-.phone-hand.hero-size .palm { left: -22px; right: -22px; bottom: -60px; height: 168px; border-radius: 82px 82px 30px 30px; }
+.phone-hand.hero-size .fingers { left: 20px; top: 40px; gap: 8px; }
+.phone-hand.hero-size .finger { width: 35px; border-radius: 19px 10px 10px 19px; }
+.phone-hand.hero-size .finger.f1 { height: 31px; }
+.phone-hand.hero-size .finger.f2 { height: 38px; }
+.phone-hand.hero-size .finger.f3 { height: 34px; }
+.phone-hand.hero-size .finger.f4 { height: 25px; }
+.phone-hand.hero-size .thumb { right: 19px; bottom: 86px; width: 42px; height: 104px; }
+.phone-hand.hero-size .palm { left: -6px; right: 0; bottom: -70px; height: 166px; }
+.phone-hand.hero-size .palm::after { bottom: -26px; height: 28px; }
 
 .hero-visual {
   position: relative;
   display: flex;
   justify-content: center;
-  padding: 24px 0 46px;
+  padding: 24px 0 96px;
 }
 
 .hero-visual::before {
