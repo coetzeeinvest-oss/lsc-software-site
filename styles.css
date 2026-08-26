@@ -565,6 +565,8 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
   padding: 28px 22px;
 }
 
+.device-mock-body.hand-body { padding: 28px 34px 62px; }
+
 .phone-frame {
   width: 132px;
   aspect-ratio: 9 / 19;
@@ -635,6 +637,94 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
 
 .pc-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+/* Mock: phone screenshots shown held in a hand, not a bare device frame */
+
+.phone-hand {
+  position: relative;
+  width: 200px;
+  margin: 0 auto;
+  padding-top: 34px;
+}
+
+.phone-hand .phone-frame { position: relative; z-index: 2; margin: 0 auto; }
+
+.phone-hand .hand-fingers {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 96px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.phone-hand .finger {
+  width: 22px;
+  border-radius: 11px 11px 5px 5px;
+  background: linear-gradient(180deg, #ecc39d, #d3a06e);
+  box-shadow: inset 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.phone-hand .finger.f1 { height: 36px; margin-top: 16px; }
+.phone-hand .finger.f2 { height: 48px; }
+.phone-hand .finger.f3 { height: 40px; margin-top: 10px; }
+
+.phone-hand .thumb {
+  position: absolute;
+  right: -4px;
+  bottom: 50px;
+  width: 34px;
+  height: 76px;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #ecc39d, #d3a06e);
+  transform: rotate(-24deg);
+  z-index: 3;
+  box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.1), 0 6px 12px -6px rgba(3, 4, 94, 0.3);
+}
+
+.phone-hand .palm {
+  position: absolute;
+  left: -16px;
+  right: -16px;
+  bottom: -46px;
+  height: 130px;
+  border-radius: 64px 64px 24px 24px;
+  background: linear-gradient(180deg, #ecc39d, #c48d61);
+  z-index: 0;
+  box-shadow: 0 24px 38px -20px rgba(3, 4, 94, 0.4);
+}
+
+/* Larger variant for the hero, where the phone is the whole visual */
+
+.phone-hand.hero-size { width: 250px; padding-top: 42px; }
+.phone-hand.hero-size .phone-frame.hero-phone-frame { width: 172px; }
+.phone-hand.hero-size .hand-fingers { width: 124px; }
+.phone-hand.hero-size .finger { width: 28px; }
+.phone-hand.hero-size .finger.f1 { height: 46px; margin-top: 20px; }
+.phone-hand.hero-size .finger.f2 { height: 62px; }
+.phone-hand.hero-size .finger.f3 { height: 52px; margin-top: 12px; }
+.phone-hand.hero-size .thumb { right: -6px; bottom: 66px; width: 44px; height: 98px; border-radius: 22px; }
+.phone-hand.hero-size .palm { left: -22px; right: -22px; bottom: -60px; height: 168px; border-radius: 82px 82px 30px 30px; }
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 24px 0 46px;
+}
+
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: -10% -5% auto -5%;
+  height: 340px;
+  background: radial-gradient(circle, rgba(251, 176, 45, 0.28), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-visual .phone-hand { position: relative; animation: float-y 6s ease-in-out infinite; }
+
 /* ---------- Play band: full-bleed, eye-catching mini-game section ---------- */
 
 .play-band {
@@ -690,121 +780,22 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
 }
 
 .play-card { margin: 0 auto; width: 100%; max-width: 420px; }
-.play-card .lane-game { min-height: 320px; }
-.play-card .lane-road { min-height: 260px; }
 
-/* Mock: catch-the-drop-off lane game */
-.lane-game {
-  height: 100%;
-  min-height: 260px;
+/* Mock: 60-second product demo video */
+.mock-body.video-body {
+  padding: 0;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.lane-hud {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 6px 12px;
-  font-family: var(--font-display);
-  font-size: 12.5px;
-  font-weight: 700;
-  color: var(--navy-700);
-}
-
-.lane-hud strong { color: var(--amber-hover); font-size: 14px; }
-.lane-hud .lane-speed { color: var(--text-4); font-weight: 600; font-size: 11px; }
-
-.lane-road {
-  position: relative;
-  flex: 1;
-  min-height: 210px;
-  border-radius: 12px;
-  overflow: hidden;
-  background: linear-gradient(180deg, var(--navy-700), var(--navy-600));
-  touch-action: none;
-}
-
-.lane-road::before,
-.lane-road::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: repeating-linear-gradient(0deg, rgba(255,255,255,0.35) 0 14px, transparent 14px 28px);
-}
-
-.lane-road::before { left: 33.333%; }
-.lane-road::after { left: 66.666%; }
-
-.lane-bus {
-  position: absolute;
-  bottom: 14px;
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  background: var(--amber);
-  color: var(--navy-700);
-  display: flex;
-  align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 14px -4px rgba(0,0,0,0.4);
-  transform: translateX(-50%);
-  transition: left 0.16s var(--ease);
+  background: #000;
 }
 
-.lane-bus .icon { width: 17px; height: 17px; }
-
-.lane-drop {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-radius: 50% 50% 50% 0;
-  background: var(--surface);
-  color: var(--navy);
-  transform: translateX(-50%) rotate(-45deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px -3px rgba(0,0,0,0.35);
+.mock-body.video-body video {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 9 / 16;
+  background: #000;
+  display: block;
 }
-
-.lane-drop .icon { width: 12px; height: 12px; transform: rotate(45deg); }
-
-.lane-pop {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--amber);
-  animation: lane-pop 0.6s var(--ease) forwards;
-  pointer-events: none;
-}
-
-.lane-controls {
-  display: flex;
-  gap: 10px;
-}
-
-.lane-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 44px;
-  border-radius: 10px;
-  border: 1.5px solid var(--border-dark);
-  background: var(--surface);
-  color: var(--navy-700);
-  cursor: pointer;
-}
-
-.lane-btn:active { background: var(--bg); }
-.lane-btn .icon { width: 20px; height: 20px; }
 
 /* Pricing */
 
@@ -1158,11 +1149,6 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
 @keyframes float-y {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
-}
-
-@keyframes lane-pop {
-  0% { opacity: 1; transform: translate(-50%, -50%) scale(0.8); }
-  100% { opacity: 0; transform: translate(-50%, -140%) scale(1.1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
