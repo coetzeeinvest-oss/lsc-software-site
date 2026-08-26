@@ -248,6 +248,108 @@
   });
 })();
 
+// Pricing page: monthly/annual billing toggle
+(function initBillingToggle() {
+  const sw = document.getElementById('billing-switch');
+  if (!sw) return;
+
+  const labels = document.querySelectorAll('.billing-label');
+  const amounts = document.querySelectorAll('[data-monthly]');
+  const pers = document.querySelectorAll('[data-per-monthly]');
+
+  function setAnnual(annual) {
+    sw.setAttribute('aria-checked', String(annual));
+    labels.forEach((l) => l.classList.toggle('active', (l.dataset.billing === 'annual') === annual));
+    amounts.forEach((el) => { el.textContent = annual ? el.dataset.annual : el.dataset.monthly; });
+    pers.forEach((el) => { el.textContent = annual ? el.dataset.perAnnual : el.dataset.perMonthly; });
+  }
+
+  sw.addEventListener('click', () => setAnnual(sw.getAttribute('aria-checked') !== 'true'));
+  labels.forEach((l) => l.addEventListener('click', () => setAnnual(l.dataset.billing === 'annual')));
+  setAnnual(false);
+})();
+
+// FAQ page: accordion + category tabs + live search
+(function initFaq() {
+  const items = document.querySelectorAll('.faq-item');
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    const btn = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    btn.addEventListener('click', () => {
+      const open = item.classList.toggle('open');
+      answer.style.maxHeight = open ? answer.scrollHeight + 'px' : '0px';
+    });
+  });
+
+  const tabs = document.querySelectorAll('.faq-tab');
+  const searchInput = document.getElementById('faq-search');
+  const categoryBlocks = document.querySelectorAll('[data-faq-category]');
+  const emptyState = document.getElementById('faq-empty');
+
+  function applyFilters() {
+    const activeTab = document.querySelector('.faq-tab.active');
+    const cat = activeTab ? activeTab.dataset.category : 'all';
+    const q = searchInput ? searchInput.value.trim().toLowerCase() : '';
+    let anyVisibleTotal = false;
+
+    categoryBlocks.forEach((block) => {
+      const blockCat = block.dataset.faqCategory;
+      const catMatch = cat === 'all' || cat === blockCat;
+      let anyVisible = false;
+      block.querySelectorAll('.faq-item').forEach((item) => {
+        const text = item.textContent.toLowerCase();
+        const show = catMatch && (!q || text.includes(q));
+        item.style.display = show ? '' : 'none';
+        if (show) anyVisible = true;
+      });
+      block.style.display = anyVisible ? '' : 'none';
+      if (anyVisible) anyVisibleTotal = true;
+    });
+
+    if (emptyState) emptyState.style.display = anyVisibleTotal ? 'none' : '';
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+      applyFilters();
+    });
+  });
+
+  if (searchInput) searchInput.addEventListener('input', applyFilters);
+})();
+
+// Contact page: build a mailto: link from the form (static site, no backend)
+(function initContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const company = form.company.value.trim();
+    const email = form.email.value.trim();
+    const plan = form.plan ? form.plan.value : '';
+    const message = form.message.value.trim();
+
+    const subject = encodeURIComponent(`LiftMe enquiry — ${company || name || 'New enquiry'}`);
+    const bodyLines = [
+      `Name: ${name}`,
+      `Company / school: ${company}`,
+      `Email: ${email}`,
+      plan ? `Plan interested in: ${plan}` : null,
+      '',
+      message,
+    ].filter((l) => l !== null);
+    const body = encodeURIComponent(bodyLines.join('\n'));
+
+    window.location.href = `mailto:hello@liftme.co.za?subject=${subject}&body=${body}`;
+  });
+})();
+
 // Highlight the current nav link on the media page
 (function initActiveNav() {
   const path = window.location.pathname.split('/').pop() || 'index.html';
