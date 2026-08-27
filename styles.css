@@ -1648,17 +1648,73 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
 }
 
 .blog-card-top {
-  height: 84px;
+  height: 130px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(135deg, var(--navy-700), var(--navy));
 }
 
 .blog-card-top.tone-amber { background: linear-gradient(135deg, var(--amber-hover), var(--amber)); }
 .blog-card-top.tone-teal { background: linear-gradient(135deg, #0e5b4d, #1f7a63); }
 
-.blog-card-top .icon { width: 30px; height: 30px; color: #fff; }
+.blog-card-top::before {
+  content: "";
+  position: absolute;
+  inset: -20% -20% auto auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18), transparent 70%);
+}
+
+.blog-card-top::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0 2px, transparent 2px 26px);
+}
+
+.blog-card-top .icon { width: 40px; height: 40px; color: #fff; position: relative; z-index: 1; }
+
+/* Full-bleed banner at the top of an individual post */
+
+.article-banner {
+  max-width: 700px;
+  height: 220px;
+  margin: 0 auto 8px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--navy-700), var(--navy));
+}
+
+.article-banner.tone-amber { background: linear-gradient(135deg, var(--amber-hover), var(--amber)); }
+.article-banner.tone-teal { background: linear-gradient(135deg, #0e5b4d, #1f7a63); }
+
+.article-banner::before {
+  content: "";
+  position: absolute;
+  inset: -30% auto auto -10%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 70%);
+}
+
+.article-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0 2px, transparent 2px 28px);
+}
+
+.article-banner .icon { width: 64px; height: 64px; color: #fff; position: relative; z-index: 1; }
 
 .blog-card-body {
   padding: 22px;
