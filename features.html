@@ -102,25 +102,20 @@
       <h2>What your parents and office actually see</h2>
       <p>Real screens from the live product, shown here on a demo tenant — your version carries your own logo, colours and fonts on your own subdomain.</p>
     </div>
-    <div class="showcase reveal-stagger">
+    <div class="showcase-tabs" role="tablist" aria-label="Select a view">
+      <button type="button" class="showcase-tab active" data-view="phone" role="tab" aria-selected="true">Phone</button>
+      <button type="button" class="showcase-tab" data-view="desktop" role="tab" aria-selected="false">Desktop</button>
+    </div>
+
+    <div class="showcase reveal-stagger" data-view-panel="phone">
 
       <div class="mock device-mock">
-        <div class="mock-body device-mock-body hand-body">
-          <div class="phone-hand">
-            <div class="fingers">
-              <span class="finger f1"></span>
-              <span class="finger f2"></span>
-              <span class="finger f3"></span>
-              <span class="finger f4"></span>
+        <div class="mock-body device-mock-body">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="media/screenshots/parent-portal-phone.png" alt="LiftMe parent portal on a phone, showing a child's to-school and from-school trip status" loading="lazy">
             </div>
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <img src="media/screenshots/parent-portal-phone.png" alt="LiftMe parent portal on a phone, showing a child's to-school and from-school trip status" loading="lazy">
-              </div>
-            </div>
-            <span class="thumb"></span>
-            <span class="palm"></span>
           </div>
         </div>
         <div class="mock-caption">
@@ -130,22 +125,12 @@
       </div>
 
       <div class="mock device-mock">
-        <div class="mock-body device-mock-body hand-body">
-          <div class="phone-hand">
-            <div class="fingers">
-              <span class="finger f1"></span>
-              <span class="finger f2"></span>
-              <span class="finger f3"></span>
-              <span class="finger f4"></span>
+        <div class="mock-body device-mock-body">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="media/screenshots/live-tracking-phone.png" alt="LiftMe live tracking on a phone, showing the school vehicle's position on a map" loading="lazy">
             </div>
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <img src="media/screenshots/live-tracking-phone.png" alt="LiftMe live tracking on a phone, showing the school vehicle's position on a map" loading="lazy">
-              </div>
-            </div>
-            <span class="thumb"></span>
-            <span class="palm"></span>
           </div>
         </div>
         <div class="mock-caption">
@@ -156,14 +141,36 @@
 
       <div class="mock device-mock">
         <div class="mock-body device-mock-body">
-          <div class="pc-frame">
-            <div class="pc-bar">
-              <span></span><span></span><span></span>
-              <div class="pc-url">yourcompany.liftme.co.za</div>
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="media/screenshots/scheduling-dispatch-phone.png" alt="LiftMe driver app on a phone, showing today's optimised route stop order" loading="lazy">
             </div>
-            <div class="pc-screen">
-              <img src="media/screenshots/invoicing-desktop.png" alt="LiftMe invoicing screen showing a VAT-ready client invoice generated from completed trips" loading="lazy">
+          </div>
+        </div>
+        <div class="mock-caption">
+          <span class="who">Scheduling &amp; dispatch</span>
+          <p>Recurring routes with driver assignment, optimised stop by stop.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="showcase reveal-stagger" data-view-panel="desktop" hidden>
+
+      <div class="mock device-mock">
+        <div class="mock-body device-mock-body">
+          <div class="monitor-mock">
+            <div class="monitor-frame">
+              <div class="pc-bar">
+                <span></span><span></span><span></span>
+                <div class="pc-url">yourcompany.liftme.co.za</div>
+              </div>
+              <div class="pc-screen">
+                <img src="media/screenshots/invoicing-desktop.png" alt="LiftMe invoicing screen showing a VAT-ready client invoice generated from completed trips" loading="lazy">
+              </div>
             </div>
+            <div class="monitor-stand"></div>
           </div>
         </div>
         <div class="mock-caption">
@@ -174,14 +181,17 @@
 
       <div class="mock device-mock">
         <div class="mock-body device-mock-body">
-          <div class="pc-frame">
-            <div class="pc-bar">
-              <span></span><span></span><span></span>
-              <div class="pc-url">yourcompany.liftme.co.za</div>
+          <div class="monitor-mock">
+            <div class="monitor-frame">
+              <div class="pc-bar">
+                <span></span><span></span><span></span>
+                <div class="pc-url">yourcompany.liftme.co.za</div>
+              </div>
+              <div class="pc-screen">
+                <img src="media/screenshots/branding-desktop.png" alt="LiftMe admin dashboard themed in the operator's own navy and amber branding" loading="lazy">
+              </div>
             </div>
-            <div class="pc-screen">
-              <img src="media/screenshots/branding-desktop.png" alt="LiftMe admin dashboard themed in the operator's own navy and amber branding" loading="lazy">
-            </div>
+            <div class="monitor-stand"></div>
           </div>
         </div>
         <div class="mock-caption">
@@ -191,40 +201,18 @@
       </div>
 
       <div class="mock device-mock">
-        <div class="mock-body device-mock-body hand-body">
-          <div class="phone-hand">
-            <div class="fingers">
-              <span class="finger f1"></span>
-              <span class="finger f2"></span>
-              <span class="finger f3"></span>
-              <span class="finger f4"></span>
-            </div>
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <img src="media/screenshots/scheduling-dispatch-phone.png" alt="LiftMe driver app on a phone, showing today's optimised route stop order" loading="lazy">
+        <div class="mock-body device-mock-body">
+          <div class="monitor-mock">
+            <div class="monitor-frame">
+              <div class="pc-bar">
+                <span></span><span></span><span></span>
+                <div class="pc-url">yourcompany.liftme.co.za</div>
+              </div>
+              <div class="pc-screen">
+                <img src="media/screenshots/notifications-desktop.png" alt="LiftMe notifications list showing driver-on-the-way and schedule update alerts" loading="lazy">
               </div>
             </div>
-            <span class="thumb"></span>
-            <span class="palm"></span>
-          </div>
-        </div>
-        <div class="mock-caption">
-          <span class="who">Scheduling &amp; dispatch</span>
-          <p>Recurring routes with driver assignment, optimised stop by stop.</p>
-        </div>
-      </div>
-
-      <div class="mock device-mock">
-        <div class="mock-body device-mock-body">
-          <div class="pc-frame">
-            <div class="pc-bar">
-              <span></span><span></span><span></span>
-              <div class="pc-url">yourcompany.liftme.co.za</div>
-            </div>
-            <div class="pc-screen">
-              <img src="media/screenshots/notifications-desktop.png" alt="LiftMe notifications list showing driver-on-the-way and schedule update alerts" loading="lazy">
-            </div>
+            <div class="monitor-stand"></div>
           </div>
         </div>
         <div class="mock-caption">

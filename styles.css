@@ -519,8 +519,14 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
   margin: 0 auto;
 }
 
+.showcase[hidden] { display: none; }
+
 @media (min-width: 700px) {
   .showcase { grid-template-columns: repeat(2, 1fr); max-width: none; margin: 0; }
+}
+
+@media (min-width: 900px) {
+  .showcase { grid-template-columns: repeat(3, 1fr); }
 }
 
 .mock {
@@ -578,8 +584,6 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
   padding: 28px 22px;
 }
 
-.device-mock-body.hand-body { padding: 28px 22px 88px; }
-
 .phone-frame {
   width: 132px;
   aspect-ratio: 9 / 19;
@@ -611,15 +615,6 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
 
 .phone-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.pc-frame {
-  width: 100%;
-  max-width: 320px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 18px 34px -22px rgba(3, 4, 94, 0.4);
-}
-
 .pc-bar {
   display: flex;
   align-items: center;
@@ -650,100 +645,15 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
 
 .pc-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-/* Mock: phone screenshots shown held in a hand, not a bare device frame.
-   Fingers wrap the left edge from behind, thumb rests on the right edge
-   in front, and the palm forms the base — a plausible one-handed grip
-   built entirely from gradients and border-radius, no image assets. */
+/* Hero: single phone screenshot, bare frame, no hand */
 
-.phone-hand {
-  position: relative;
-  width: 212px;
-  margin: 0 auto;
-}
-
-.phone-hand .phone-frame { position: relative; z-index: 2; margin: 0 auto; }
-
-.phone-hand .fingers {
-  position: absolute;
-  left: 16px;
-  top: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  z-index: 3;
-}
-
-.phone-hand .finger {
-  position: relative;
-  width: 27px;
-  border-radius: 15px 8px 8px 15px;
-  background: linear-gradient(100deg, #ca905f 0%, #eccaa2 45%, #dba873 100%);
-  box-shadow: inset -4px 0 5px rgba(120, 74, 34, 0.28), inset 0 1px 2px rgba(255, 255, 255, 0.4);
-}
-
-.phone-hand .finger.f1 { height: 24px; }
-.phone-hand .finger.f2 { height: 29px; }
-.phone-hand .finger.f3 { height: 26px; }
-.phone-hand .finger.f4 { height: 19px; }
-
-.phone-hand .thumb {
-  position: absolute;
-  right: 15px;
-  bottom: 66px;
-  width: 32px;
-  height: 80px;
-  border-radius: 40% 60% 60% 40% / 55% 55% 45% 45%;
-  background: linear-gradient(115deg, #dba873 0%, #eccaa2 45%, #caa06e 100%);
-  transform: rotate(-11deg);
-  transform-origin: bottom center;
-  z-index: 3;
-  box-shadow: inset 3px 0 5px rgba(120, 74, 34, 0.22), inset 0 -2px 3px rgba(255, 255, 255, 0.3), 0 8px 14px -8px rgba(3, 4, 94, 0.35);
-}
-
-.phone-hand .palm {
-  position: absolute;
-  left: -4px;
-  right: 0;
-  bottom: -54px;
-  height: 128px;
-  border-radius: 58% 52% 32% 42% / 68% 62% 38% 42%;
-  background: linear-gradient(165deg, #eccaa2 0%, #d3a06e 55%, #bd875a 100%);
-  z-index: 0;
-}
-
-.phone-hand .palm::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -20px;
-  transform: translateX(-50%);
-  width: 62%;
-  height: 22px;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(3, 4, 94, 0.28), transparent 72%);
-  filter: blur(1px);
-  z-index: -1;
-}
-
-/* Larger variant for the hero, where the phone is the whole visual */
-
-.phone-hand.hero-size { width: 272px; }
-.phone-hand.hero-size .phone-frame.hero-phone-frame { width: 172px; }
-.phone-hand.hero-size .fingers { left: 20px; top: 40px; gap: 8px; }
-.phone-hand.hero-size .finger { width: 35px; border-radius: 19px 10px 10px 19px; }
-.phone-hand.hero-size .finger.f1 { height: 31px; }
-.phone-hand.hero-size .finger.f2 { height: 38px; }
-.phone-hand.hero-size .finger.f3 { height: 34px; }
-.phone-hand.hero-size .finger.f4 { height: 25px; }
-.phone-hand.hero-size .thumb { right: 19px; bottom: 86px; width: 42px; height: 104px; }
-.phone-hand.hero-size .palm { left: -6px; right: 0; bottom: -70px; height: 166px; }
-.phone-hand.hero-size .palm::after { bottom: -26px; height: 28px; }
+.hero-phone-frame { width: 220px; }
 
 .hero-visual {
   position: relative;
   display: flex;
   justify-content: center;
-  padding: 24px 0 96px;
+  padding: 24px 0 48px;
 }
 
 .hero-visual::before {
@@ -755,7 +665,77 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
   pointer-events: none;
 }
 
-.hero-visual .phone-hand { position: relative; animation: float-y 6s ease-in-out infinite; }
+.hero-visual .phone-frame { position: relative; animation: float-y 6s ease-in-out infinite; }
+
+/* Mock: desktop screenshots framed as a physical monitor — bezel + stand,
+   built from CSS only, no image assets. */
+
+.monitor-mock { width: 100%; max-width: 320px; margin: 0 auto; }
+
+.monitor-frame {
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--navy-700);
+  padding: 8px 8px 14px;
+  box-shadow: 0 18px 34px -22px rgba(3, 4, 94, 0.4);
+}
+
+.monitor-frame .pc-bar { border-radius: 6px 6px 0 0; }
+.monitor-frame .pc-screen { border-radius: 0 0 6px 6px; }
+
+.monitor-stand { width: 70px; height: 34px; margin: 0 auto; position: relative; }
+
+.monitor-stand::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 22px;
+  background: var(--navy-700);
+}
+
+.monitor-stand::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 8px;
+  border-radius: 5px;
+  background: var(--navy-700);
+}
+
+/* Showcase: Phone / Desktop view switcher (features page) */
+
+.showcase-tabs {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto 28px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 4px;
+  border-radius: 999px;
+}
+
+.showcase-tab {
+  border: none;
+  background: transparent;
+  color: var(--text-2);
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 9px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.showcase-tab.active { background: var(--navy); color: #fff; }
 
 /* ---------- Play band: full-bleed, eye-catching mini-game section ---------- */
 
@@ -811,7 +791,7 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
   max-width: 42ch;
 }
 
-.play-card { margin: 0 auto; width: 100%; max-width: 420px; }
+.play-card { margin: 0 auto; width: 100%; max-width: 320px; }
 
 /* Mock: 60-second product demo video */
 .mock-body.video-body {
@@ -1254,7 +1234,12 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
 .compare-wrap {
   overflow-x: auto;
   margin-top: 4px;
+  border-radius: 18px;
+  -webkit-overflow-scrolling: touch;
 }
+
+.compare-tabs,
+.compare-panels { display: none; }
 
 .compare-table {
   width: 100%;
@@ -1264,8 +1249,15 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 18px;
-  overflow: hidden;
 }
+
+/* overflow:hidden on the table itself would break position:sticky (it
+   becomes the sticky containing block instead of .compare-wrap), so the
+   rounded corners are clipped on .compare-wrap and re-applied per-cell here. */
+.compare-table thead th:first-child { border-top-left-radius: 17px; }
+.compare-table thead th:last-child { border-top-right-radius: 17px; }
+.compare-table tbody tr:last-child td:first-child { border-bottom-left-radius: 17px; }
+.compare-table tbody tr:last-child td:last-child { border-bottom-right-radius: 17px; }
 
 .compare-table th,
 .compare-table td {
@@ -1304,6 +1296,77 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
   letter-spacing: 0.06em;
   color: var(--navy);
   text-align: left;
+}
+
+/* On phones, the horizontally-scrolling table is replaced with a plan
+   tab switcher + single-column feature list — no sideways scrolling
+   needed to compare plans, one plan's full feature list at a time. */
+@media (max-width: 700px) {
+  .compare-wrap { display: none; }
+
+  .compare-tabs {
+    display: flex;
+    gap: 4px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 4px;
+    border-radius: 999px;
+    margin: 0 0 18px;
+  }
+
+  .compare-tab {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--text-2);
+    font-family: var(--font-display);
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 9px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .compare-tab.active { background: var(--navy); color: #fff; }
+
+  .compare-panels {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  .compare-panel-group + .compare-panel-group { border-top: 1px solid var(--border); }
+
+  .compare-panel-group h4 {
+    margin: 0;
+    padding: 12px 18px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--navy);
+    background: var(--bg);
+  }
+
+  .compare-panel-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 18px;
+    font-size: 13.5px;
+    color: var(--text-2);
+    border-top: 1px solid var(--border);
+  }
+
+  .compare-panel-group h4 + .compare-panel-row { border-top: none; }
+
+  .compare-panel-row .icon-check { width: 15px; height: 15px; flex-shrink: 0; }
+  .compare-panel-row .dash { color: var(--text-4); }
 }
 
 /* ---------- FAQ accordion ---------- */
@@ -1660,6 +1723,34 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
 .blog-card-top.tone-amber { background: linear-gradient(135deg, var(--amber-hover), var(--amber)); }
 .blog-card-top.tone-teal { background: linear-gradient(135deg, #0e5b4d, #1f7a63); }
 
+.blog-card-top.has-photo {
+  background-size: cover;
+  background-position: center;
+}
+
+.blog-card-top.has-photo::before {
+  inset: 0;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: linear-gradient(180deg, rgba(11, 15, 26, 0.05) 40%, rgba(11, 15, 26, 0.6));
+}
+
+.blog-card-top.has-photo::after { content: none; }
+
+.blog-card-top.has-photo .icon {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  width: 20px;
+  height: 20px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(3px);
+  border-radius: 10px;
+  box-sizing: content-box;
+}
+
 .blog-card-top::before {
   content: "";
   position: absolute;
@@ -1696,6 +1787,34 @@ section { padding: clamp(48px, 7vw, 76px) 0; }
 
 .article-banner.tone-amber { background: linear-gradient(135deg, var(--amber-hover), var(--amber)); }
 .article-banner.tone-teal { background: linear-gradient(135deg, #0e5b4d, #1f7a63); }
+
+.article-banner.has-photo {
+  background-size: cover;
+  background-position: center;
+}
+
+.article-banner.has-photo::before {
+  inset: 0;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: linear-gradient(180deg, rgba(11, 15, 26, 0.05) 45%, rgba(11, 15, 26, 0.62));
+}
+
+.article-banner.has-photo::after { content: none; }
+
+.article-banner.has-photo .icon {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  width: 26px;
+  height: 26px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(3px);
+  border-radius: 12px;
+  box-sizing: content-box;
+}
 
 .article-banner::before {
   content: "";

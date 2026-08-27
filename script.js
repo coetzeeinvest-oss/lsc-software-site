@@ -133,6 +133,44 @@
   setAnnual(false);
 })();
 
+// Features page: showcase Phone / Desktop view switcher
+(function initShowcaseTabs() {
+  const tabs = document.querySelectorAll('.showcase-tab');
+  if (!tabs.length) return;
+
+  const panels = document.querySelectorAll('.showcase[data-view-panel]');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const view = tab.dataset.view;
+      tabs.forEach((t) => {
+        t.classList.toggle('active', t === tab);
+        t.setAttribute('aria-selected', String(t === tab));
+      });
+      panels.forEach((p) => { p.hidden = p.dataset.viewPanel !== view; });
+    });
+  });
+})();
+
+// Pricing page: mobile plan-comparison tabs
+(function initCompareTabs() {
+  const tabs = document.querySelectorAll('.compare-tab');
+  if (!tabs.length) return;
+
+  const panels = document.querySelectorAll('.compare-panel');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const plan = tab.dataset.plan;
+      tabs.forEach((t) => {
+        t.classList.toggle('active', t === tab);
+        t.setAttribute('aria-selected', String(t === tab));
+      });
+      panels.forEach((p) => { p.hidden = p.dataset.plan !== plan; });
+    });
+  });
+})();
+
 // FAQ page: accordion + category tabs + live search
 (function initFaq() {
   const items = document.querySelectorAll('.faq-item');
