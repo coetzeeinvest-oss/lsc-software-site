@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://liftme.co.za/sitemap.xml
