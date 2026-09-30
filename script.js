@@ -17,7 +17,9 @@
         }
       });
     },
-    { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    // threshold 0: long elements (e.g. a full article body) can never reach
+    // a fractional threshold on short viewports and would stay invisible.
+    { threshold: 0, rootMargin: '0px 0px -40px 0px' }
   );
 
   targets.forEach((el) => io.observe(el));
