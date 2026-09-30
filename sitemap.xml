@@ -26,9 +26,15 @@
   </url>
   <url>
     <loc>https://liftme.co.za/blog.html</loc>
-    <lastmod>2026-09-01</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://liftme.co.za/blog-find-school-transport.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://liftme.co.za/blog-parent-peace-of-mind.html</loc>
