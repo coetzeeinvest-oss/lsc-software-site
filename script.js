@@ -25,7 +25,7 @@
   targets.forEach((el) => io.observe(el));
 })();
 
-// Company directory search — used on the "find my portal" section for parents/operators.
+// Company directory search, used on the "find my portal" section for parents/operators.
 (function initFinder() {
   const input = document.getElementById('finder-input');
   const results = document.getElementById('finder-results');
@@ -110,7 +110,7 @@
   });
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth >= 661) setOpen(false);
+    if (window.innerWidth >= 900) setOpen(false);
   });
 })();
 
@@ -239,7 +239,7 @@
     const plan = form.plan ? form.plan.value : '';
     const message = form.message.value.trim();
 
-    const subject = encodeURIComponent(`LiftMe enquiry — ${company || name || 'New enquiry'}`);
+    const subject = encodeURIComponent(`LiftMe enquiry: ${company || name || 'New enquiry'}`);
     const bodyLines = [
       `Name: ${name}`,
       `Company / school: ${company}`,
@@ -249,6 +249,29 @@
       message,
     ].filter((l) => l !== null);
     const body = encodeURIComponent(bodyLines.join('\n'));
+
+    window.location.href = `mailto:liftme.demo@gmail.com?subject=${subject}&body=${body}`;
+  });
+})();
+
+// Homepage hero: business name → pre-filled demo request email
+(function initHeroDemoForm() {
+  const form = document.getElementById('hero-demo-form');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const business = form.business.value.trim();
+
+    const subject = encodeURIComponent(`LiftMe demo: ${business || 'New operator'}`);
+    const body = encodeURIComponent([
+      'Hi LiftMe team,',
+      '',
+      `I'd like a demo of LiftMe${business ? ` for ${business}` : ''}.`,
+      '',
+      'Number of vehicles: ',
+      'Schools we serve: ',
+    ].join('\n'));
 
     window.location.href = `mailto:liftme.demo@gmail.com?subject=${subject}&body=${body}`;
   });
