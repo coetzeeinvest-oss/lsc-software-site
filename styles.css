@@ -345,7 +345,9 @@ nav.topbar {
    the element's own backgrounds, ::before is the roof sign and ::after a
    couple of faint puffs of wheel smoke that drift off as each page loads. The
    cap artwork is inline SVG, so its amber and navy mirror --amber and
-   --navy-700. The shadow is a drop-shadow so it follows the silhouette. The
+   --navy-700. The body fill (the last layer) runs 3px under each cap, where the
+   caps are opaque, so rounding at the zoomed fractional width can never leave
+   a hairline gap at either join. The shadow is a drop-shadow so it follows the silhouette. The
    whole drawing is built at 45px tall and zoomed down so it stays small. */
 .eyebrow {
   --smoke: rgba(87, 97, 124, 0.5);
@@ -376,8 +378,8 @@ nav.topbar {
     linear-gradient(105deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.26) 45%, rgba(255, 255, 255, 0) 68%),
     linear-gradient(180deg, #F7C463 0, #FBB02D 55%, #E09B1C 100%);
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, round no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-  background-size: 14px 14px, 14px 14px, 38px 40px, 12px 40px, 46px 11px, calc(100% - 48px) 5px, calc(100% - 48px) 5px, calc(100% - 48px) 40px, calc(100% - 48px) 40px;
-  background-position: right 23px bottom 0, left 17px bottom 0, right top, left top, 0 4px, 11px 17px, 11px 17px, 11px 0, 11px 0;
+  background-size: 14px 14px, 14px 14px, 38px 40px, 12px 40px, 46px 11px, calc(100% - 48px) 5px, calc(100% - 48px) 5px, calc(100% - 48px) 40px, calc(100% - 44px) 40px;
+  background-position: right 23px bottom 0, left 17px bottom 0, right top, left top, 0 4px, 11px 17px, 11px 17px, 11px 0, 9px 0;
   background-origin: border-box, border-box, border-box, border-box, padding-box, border-box, border-box, border-box, border-box;
   background-clip: border-box, border-box, border-box, border-box, padding-box, border-box, border-box, border-box, border-box;
   filter: drop-shadow(0 4px 5px rgba(3, 4, 94, 0.16)) drop-shadow(0 0 1px rgba(3, 4, 94, 0.35));
