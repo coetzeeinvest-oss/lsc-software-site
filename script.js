@@ -250,7 +250,7 @@
     ].filter((l) => l !== null);
     const body = encodeURIComponent(bodyLines.join('\n'));
 
-    window.location.href = `mailto:liftme.demo@gmail.com?subject=${subject}&body=${body}`;
+    openMailChooser(`mailto:liftme.demo@gmail.com?subject=${subject}&body=${body}`);
   });
 })();
 
@@ -273,7 +273,7 @@
       'Schools we serve: ',
     ].join('\n'));
 
-    window.location.href = `mailto:liftme.demo@gmail.com?subject=${subject}&body=${body}`;
+    openMailChooser(`mailto:liftme.demo@gmail.com?subject=${subject}&body=${body}`);
   });
 })();
 
@@ -284,3 +284,73 @@
     if (a.dataset.page === path) a.classList.add('active');
   });
 })();
+
+// Mail links: let visitors pick Gmail, Outlook, Yahoo or their default app,
+// instead of mailto: launching whichever program the OS has registered
+function openMailChooser(mailto) {
+  const url = new URL(mailto);
+  const to = url.pathname;
+  const subject = url.searchParams.get('subject') || '';
+  const body = url.searchParams.get('body') || '';
+  const q = (o) => Object.entries(o).map(([k, v]) => `${k}=${encodeURIComponent(v)}`).join('&');
+
+  const options = [
+    ['Gmail', `https://mail.google.com/mail/?${q({ view: 'cm', fs: 1, to, su: subject, body })}`],
+    ['Outlook', `https://outlook.live.com/mail/0/deeplink/compose?${q({ to, subject, body })}`],
+    ['Yahoo Mail', `https://compose.mail.yahoo.com/?${q({ to, subject, body })}`],
+  ];
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'mail-pick-backdrop';
+  backdrop.innerHTML = '<div class="mail-pick" role="dialog" aria-modal="true" aria-label="Choose your email">' +
+    '<h3>Send us an email</h3><p>Pick the email you use and the message opens ready to send.</p>' +
+    '<div class="mail-pick-list"></div></div>';
+  const list = backdrop.querySelector('.mail-pick-list');
+  const onKey = (e) => { if (e.key === 'Escape') close(); };
+  const close = () => { backdrop.remove(); document.removeEventListener('keydown', onKey); };
+
+  options.forEach(([label, href]) => {
+    const a = document.createElement('a');
+    a.href = href;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = label;
+    a.addEventListener('click', () => setTimeout(close, 0));
+    list.appendChild(a);
+  });
+
+  const app = document.createElement('a');
+  app.href = mailto;
+  app.dataset.native = '1';
+  app.textContent = 'Email app on this device';
+  app.addEventListener('click', () => setTimeout(close, 0));
+  list.appendChild(app);
+
+  const copy = document.createElement('button');
+  copy.type = 'button';
+  copy.textContent = `Copy ${to}`;
+  copy.addEventListener('click', () => {
+    if (navigator.clipboard) navigator.clipboard.writeText(to).catch(() => {});
+    copy.textContent = 'Copied';
+  });
+  list.appendChild(copy);
+
+  const cancel = document.createElement('button');
+  cancel.type = 'button';
+  cancel.className = 'mail-pick-cancel';
+  cancel.textContent = 'Cancel';
+  cancel.addEventListener('click', close);
+  list.appendChild(cancel);
+
+  backdrop.addEventListener('click', (e) => { if (e.target === backdrop) close(); });
+  document.addEventListener('keydown', onKey);
+  document.body.appendChild(backdrop);
+  list.querySelector('a').focus();
+}
+
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href^="mailto:"]');
+  if (!a || a.closest('.mail-pick')) return;
+  e.preventDefault();
+  openMailChooser(a.getAttribute('href'));
+});
