@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>LiftMe Facebook cover (1920x1080)</title>
+<!--
+  Facebook Page cover for LiftMe by LSC Software.
+  Canvas is 16:9 (1920x1080): Facebook shows the full 16:9 on mobile and crops a
+  centred ~2.6:1 strip on desktop, so everything important sits inside the
+  "safe zone" described below.
+
+  SAFE ZONE (px on the 1920x1080 canvas)
+    - Top 0-190:      phone status bar + desktop crop  -> nothing important
+    - Bottom 900-1080: desktop crop                    -> nothing important
+    - Bottom-left:    the profile photo circle covers a circle of radius ~410
+                      centred at (450, 1075) on mobile -> text stays above y=640
+                      (left side) and right of x=880 (below that)
+    - Top-right:      back / search / edit buttons on mobile -> only decoration
+    - Bottom-right:   camera button for page admins -> only decoration
+
+  Render:  1920x1080 screenshot -> media/social/liftme-facebook-cover.png
+-->
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-900: #020447;
+    --navy-700: #03045E;
+    --navy-600: #032B7A;
+    --blue: #023EBA;
+    --blue-soft: #4C74D6;
+    --amber: #FBB02D;
+    --amber-mid: #F7C463;
+    --ice: #CFE0FF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; background: var(--navy-700); }
+  body { font-family: 'Figtree', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+  .stage {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background:
+      radial-gradient(900px 700px at 88% 4%, rgba(76, 116, 214, .55), rgba(76, 116, 214, 0) 70%),
+      radial-gradient(1000px 800px at 6% 108%, rgba(2, 62, 186, .55), rgba(2, 62, 186, 0) 70%),
+      linear-gradient(135deg, #03045E 0%, #032B7A 52%, #023EBA 100%);
+  }
+
+  /* ---------- text block (left) ---------- */
+  .copy { position: absolute; left: 190px; top: 226px; }
+
+  .eyebrow {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 2px solid rgba(251, 176, 45, .9);
+    border-radius: 999px;
+    color: var(--amber);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    background: rgba(3, 4, 94, .35);
+  }
+
+  .brand-row { display: flex; align-items: baseline; margin-top: 26px; }
+  .product {
+    font-family: 'Outfit', 'Figtree', sans-serif;
+    font-weight: 600;
+    font-size: 184px;
+    line-height: .92;
+    font-kerning: none;
+    letter-spacing: 0.01em;
+    color: #fff;
+  }
+  .maker {
+    margin-left: 26px;
+    font-weight: 700;
+    font-size: 40px;
+    letter-spacing: .005em;
+    color: var(--amber);
+  }
+
+  .tagline {
+    margin-top: 18px;
+    font-weight: 500;
+    font-size: 43px;
+    line-height: 1.38;
+    color: var(--ice);
+  }
+
+  /* ---------- feature pills (right) ---------- */
+  .features {
+    position: absolute;
+    left: 1250px; top: 466px;
+    display: flex; flex-direction: column; gap: 18px;
+    align-items: flex-start;
+  }
+  .pill {
+    display: flex; align-items: center; gap: 16px;
+    height: 70px;
+    padding: 0 34px 0 15px;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--navy-700);
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: -.005em;
+    box-shadow: 0 10px 28px rgba(2, 4, 71, .35);
+  }
+  .pill .ico {
+    flex: none;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--amber);
+    display: grid; place-items: center;
+  }
+  .pill svg { width: 24px; height: 24px; fill: none; stroke: var(--navy-700); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---------- route decoration ---------- */
+  .route { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <svg class="route" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+    </defs>
+    <!-- dotted route: starts top-centre, loops out to the right, drops to the pin -->
+    <path d="M1150 252 C1400 140 1740 180 1790 410 C1822 540 1806 620 1800 672"
+          fill="none" stroke="#FBB02D" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 17" opacity=".95"/>
+    <circle cx="1150" cy="252" r="14" fill="#fff"/>
+    <circle cx="1150" cy="252" r="26" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="3"/>
+    <circle cx="1618" cy="204" r="11" fill="#FBB02D"/>
+    <!-- destination pin -->
+    <circle cx="1800" cy="748" r="40" fill="#FBB02D" opacity=".28" filter="url(#glow)"/>
+    <path d="M1800 780 C1800 780 1768 744 1768 718 a32 32 0 0 1 64 0 c0 26 -32 62 -32 62z" fill="#FBB02D"/>
+    <circle cx="1800" cy="718" r="12" fill="#03045E"/>
+  </svg>
+
+  <div class="copy">
+    <div class="eyebrow">LSC Software &nbsp;·&nbsp; Scholar Transport Platform</div>
+    <div class="brand-row">
+      <span class="product">LiftMe</span>
+      <span class="maker">by LSC Software</span>
+    </div>
+    <div class="tagline">Dispatch, live tracking and billing<br>built for South African scholar transport.</div>
+  </div>
+
+  <div class="features">
+    <div class="pill"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>Scheduling &amp; dispatch</div>
+    <div class="pill"><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>Live GPS tracking</div>
+    <div class="pill"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.9 3.1-6.5 7-6.5s7 2.6 7 6.5"/></svg></span>Parent portal</div>
+    <div class="pill"><span class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span>Invoicing</div>
+  </div>
+</div>
+</body>
+</html>
