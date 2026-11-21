@@ -2406,15 +2406,15 @@ section { padding: clamp(48px, 7vw, 88px) 0; }
   .blog-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* Homepage resources: one featured guide beside a 2x2 of smaller posts */
+/* Homepage resources: one wide featured guide above a grid of smaller posts */
 @media (min-width: 700px) {
   .blog-grid.resources > .featured { grid-column: 1 / -1; }
 }
 
 @media (min-width: 1000px) {
-  .blog-grid.resources { grid-template-columns: 1.3fr 1fr 1fr; }
-  .blog-grid.resources > .featured { grid-column: auto; grid-row: span 2; }
-  .blog-grid.resources > .featured .blog-card-top { height: auto; flex: 1; min-height: 260px; }
+  .blog-grid.resources > .featured { flex-direction: row; }
+  .blog-grid.resources > .featured .blog-card-top { height: auto; flex: 1 1 54%; min-height: 280px; }
+  .blog-grid.resources > .featured .blog-card-body { flex: 1 1 46%; justify-content: center; padding: 28px 32px; }
 }
 
 .blog-card.featured .blog-card-top { height: 240px; }
