@@ -27,7 +27,156 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=7">
+<link rel="stylesheet" href="styles.css?v=8">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://liftme.co.za/#organization",
+      "name": "LSC Software",
+      "url": "https://liftme.co.za/",
+      "logo": "https://liftme.co.za/media/icons/apple-touch-icon.png",
+      "description": "LSC Software builds scholar transport software for South African operators. LiftMe is our flagship product.",
+      "brand": {
+        "@type": "Brand",
+        "name": "LiftMe"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ZA"
+      },
+      "sameAs": [
+        "https://www.facebook.com/people/LiftMe/61594611315519/"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+27-74-860-6814",
+        "contactType": "sales",
+        "areaServed": "ZA",
+        "availableLanguage": "English"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://liftme.co.za/#software",
+      "name": "LiftMe",
+      "url": "https://liftme.co.za/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Scholar transport management software for South African operators: dispatch, live tracking, parent notifications and automatic billing in one platform.",
+      "featureList": [
+        "Route scheduling and dispatch",
+        "Live vehicle tracking for parents",
+        "Automatic parent and driver notifications",
+        "Client invoicing from completed trips",
+        "Your own branded subdomain"
+      ],
+      "publisher": {
+        "@id": "https://liftme.co.za/#organization"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "ZAR",
+        "lowPrice": "499",
+        "highPrice": "2799",
+        "offerCount": 3,
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Bakkie",
+            "description": "Up to 2 vehicles, billed month to month",
+            "url": "https://liftme.co.za/pricing.html",
+            "price": "499",
+            "priceCurrency": "ZAR",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "499",
+              "priceCurrency": "ZAR",
+              "unitCode": "MON"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Fleet",
+            "description": "Up to 8 vehicles, billed month to month",
+            "url": "https://liftme.co.za/pricing.html",
+            "price": "1299",
+            "priceCurrency": "ZAR",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "1299",
+              "priceCurrency": "ZAR",
+              "unitCode": "MON"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Depot",
+            "description": "Unlimited vehicles, billed month to month",
+            "url": "https://liftme.co.za/pricing.html",
+            "price": "2799",
+            "priceCurrency": "ZAR",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "2799",
+              "priceCurrency": "ZAR",
+              "unitCode": "MON"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://liftme.co.za/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How is LiftMe different from generic fleet-tracking software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Generic fleet tools are built for couriers and logistics dispatch. LiftMe is built around learners, parents, drivers and schools specifically: recurring weekly routes, a parent portal per child, and pricing tiers per school."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to go live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most operators are running within days, not weeks. We set up your branded subdomain, routes and driver accounts for you."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a contract?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Billing is month to month. Before you go live we ask you to sign a short agreement covering liability and POPIA compliance, so the responsibilities on both sides are clear."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can parents track the vehicle live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, on the Fleet and Depot plans. Parents watch the vehicle move from the moment it sets off, alongside their child's trip status."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to install anything?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No installation. LiftMe runs in the browser for the office and parents, and drivers use a mobile-friendly web app from the road."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -71,7 +220,7 @@
 <nav class="topbar">
   <div class="topbar-inner">
     <a href="#top" class="wordmark">
-      <img class="wordmark-mark" src="media/icons/favicon.svg" alt="" width="32" height="32">
+      <img class="wordmark-mark" src="media/icons/favicon.svg" alt="LiftMe logo" width="32" height="32">
       <span class="product">LiftMe</span>
       <span class="maker">by LSC Software</span>
     </a>
@@ -123,6 +272,11 @@
       <button type="submit" class="btn btn-amber">Book a demo <svg class="icon-duo" style="width:18px;height:18px;"><use href="#ph-arrow-right"></use></svg></button>
     </form>
     <p class="hero-fineprint">Month-to-month billing · no setup fee · live in days</p>
+    <div class="hero-contact">
+      <span class="hero-contact-label">Prefer to chat?</span>
+      <a href="https://wa.me/27748606814?text=Hi%20LiftMe%2C%20I%20run%20a%20school%20transport%20business%20and%20I%27d%20like%20a%20demo." class="btn btn-whatsapp" target="_blank" rel="noopener"><svg class="icon-duo icon-wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> Chat on WhatsApp</a>
+      <a href="tel:+27748606814" class="btn btn-outline"><svg class="icon-duo" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M223.94,174.08A48.33,48.33,0,0,1,176,216,136,136,0,0,1,40,80,48.33,48.33,0,0,1,81.92,32.06a8,8,0,0,1,8.3,4.8l21.13,47.2a8,8,0,0,1-.66,7.53L89.32,117a7.93,7.93,0,0,0-.54,7.81c8.27,16.93,25.77,34.22,42.75,42.41a7.92,7.92,0,0,0,7.83-.59l25-21.3a8,8,0,0,1,7.59-.69l47.16,21.13A8,8,0,0,1,223.94,174.08Z" opacity="0.2"/><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></svg> Call 074 860 6814</a>
+    </div>
     </div>
 
     <div class="hero-shot reveal">
@@ -131,12 +285,12 @@
           <span></span><span></span><span></span>
           <div class="browser-url">yourcompany.liftme.co.za</div>
         </div>
-        <img src="media/screenshots/branding-desktop.png" alt="LiftMe operator dashboard showing total students, active drivers, client families and today's trips" width="1878" height="956" loading="eager">
+        <img src="media/screenshots/branding-desktop.webp" alt="LiftMe operator dashboard showing total students, active drivers, client families and today's trips" width="1878" height="956" loading="eager">
       </div>
       <div class="phone-frame hero-shot-phone">
         <div class="phone-notch"></div>
         <div class="phone-screen">
-          <img src="media/screenshots/live-tracking-phone.png" alt="LiftMe live tracking screen on a parent's phone, showing the school vehicle on a map" loading="eager">
+          <img src="media/screenshots/live-tracking-phone.webp" alt="LiftMe live tracking screen on a parent's phone, showing the school vehicle on a map" loading="eager">
         </div>
       </div>
       <div class="float-chip chip-1">
@@ -208,7 +362,7 @@
           <div class="phone-frame">
             <div class="phone-notch"></div>
             <div class="phone-screen">
-              <img src="media/screenshots/live-tracking-phone.png" alt="Live tracking map in the LiftMe parent portal" loading="lazy">
+              <img src="media/screenshots/live-tracking-phone.webp" alt="Live tracking map in the LiftMe parent portal" loading="lazy">
             </div>
           </div>
           <div class="float-chip chip-a">
@@ -226,7 +380,7 @@
 
       <article class="core-card">
         <div class="core-visual tone-amber">
-          <img class="shot-desktop" src="media/screenshots/branding-desktop.png" alt="LiftMe operator dashboard with students, drivers, families and trips today" loading="lazy">
+          <img class="shot-desktop" src="media/screenshots/branding-desktop.webp" alt="LiftMe operator dashboard with students, drivers, families and trips today" loading="lazy">
         </div>
         <div class="core-body">
           <div class="core-label">Know your numbers</div>
@@ -241,7 +395,7 @@
           <div class="phone-frame">
             <div class="phone-notch"></div>
             <div class="phone-screen">
-              <img src="media/screenshots/scheduling-dispatch-phone.png" alt="LiftMe driver app showing today's optimised route stop order" loading="lazy">
+              <img src="media/screenshots/scheduling-dispatch-phone.webp" alt="LiftMe driver app showing today's optimised route stop order" loading="lazy">
             </div>
           </div>
           <div class="float-chip chip-b">
@@ -259,7 +413,7 @@
 
       <article class="core-card">
         <div class="core-visual tone-lilac">
-          <img class="shot-desktop" src="media/screenshots/invoicing-desktop.png" alt="VAT-ready LiftMe client invoice generated from completed trips" loading="lazy" style="object-position: top;">
+          <img class="shot-desktop" src="media/screenshots/invoicing-desktop.webp" alt="VAT-ready LiftMe client invoice generated from completed trips" loading="lazy" style="object-position: top;">
         </div>
         <div class="core-body">
           <div class="core-label">Formalise your business</div>
@@ -316,7 +470,7 @@
           <div class="mock">
             <div class="mock-chrome"><span></span><span></span><span></span></div>
             <div class="mock-body video-body">
-              <video controls preload="metadata" playsinline src="media/videos/liftme-in-60-seconds.mov"></video>
+              <video controls preload="none" playsinline poster="media/videos/posters/liftme-in-60-seconds.webp" src="media/videos/liftme-in-60-seconds.mov"></video>
             </div>
           </div>
         </div>
@@ -390,6 +544,10 @@
         </div>
       </div>
       <div class="support-card reveal">
+        <a class="support-method" href="https://wa.me/27748606814?text=Hi%20LiftMe%2C%20I%20have%20a%20question%20about%20LiftMe." target="_blank" rel="noopener">
+          <span class="support-method-icon support-method-wa"><svg class="icon-duo icon-wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
+          <div><div class="sm-label">WhatsApp</div><div class="sm-value">Chat with us</div></div>
+        </a>
         <a class="support-method" href="tel:+27748606814">
           <span class="support-method-icon"><svg class="icon-duo"><use href="#ph-phone"></use></svg></span>
           <div><div class="sm-label">Call us</div><div class="sm-value">074 860 6814</div></div>
@@ -523,7 +681,7 @@
     <div class="footer-inner">
       <div>
         <a href="#top" class="wordmark">
-          <img class="wordmark-mark" src="media/icons/favicon.svg" alt="" width="32" height="32">
+          <img class="wordmark-mark" src="media/icons/favicon.svg" alt="LiftMe logo" width="32" height="32">
           <span class="product">LiftMe</span>
           <span class="maker">by LSC Software</span>
         </a>
@@ -541,6 +699,7 @@
           <a href="about.html">About</a>
           <a href="blog.html">Blog</a>
           <a href="faq.html">FAQ</a>
+          <a href="https://www.facebook.com/people/LiftMe/61594611315519/" target="_blank" rel="noopener">Facebook</a>
           <a href="https://www.linkedin.com/in/liamsteyncoetzee/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
         <div class="foot-col">
@@ -548,6 +707,7 @@
           <a href="contact.html">Contact us</a>
           <a href="mailto:liftme.demo@gmail.com">liftme.demo@gmail.com</a>
           <a href="tel:+27748606814">074 860 6814</a>
+          <a href="https://wa.me/27748606814?text=Hi%20LiftMe%2C%20I%20have%20a%20question%20about%20LiftMe." target="_blank" rel="noopener">WhatsApp us</a>
           <a href="#find-portal">Find my company</a>
         </div>
       </div>
@@ -558,6 +718,11 @@
     </div>
   </div>
 </footer>
+
+<div class="quick-contact" role="group" aria-label="Contact LiftMe">
+  <a class="qc-btn qc-call" href="tel:+27748606814" aria-label="Call 074 860 6814"><svg class="icon-duo" viewBox="0 0 256 256" aria-hidden="true" focusable="false"><path d="M223.94,174.08A48.33,48.33,0,0,1,176,216,136,136,0,0,1,40,80,48.33,48.33,0,0,1,81.92,32.06a8,8,0,0,1,8.3,4.8l21.13,47.2a8,8,0,0,1-.66,7.53L89.32,117a7.93,7.93,0,0,0-.54,7.81c8.27,16.93,25.77,34.22,42.75,42.41a7.92,7.92,0,0,0,7.83-.59l25-21.3a8,8,0,0,1,7.59-.69l47.16,21.13A8,8,0,0,1,223.94,174.08Z" opacity="0.2"/><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></svg></a>
+  <a class="qc-btn qc-wa" href="https://wa.me/27748606814?text=Hi%20LiftMe%2C%20I%20have%20a%20question%20about%20LiftMe." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg class="icon-duo icon-wa" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+</div>
 
 <script src="tenants.js"></script>
 <script src="script.js?v=5"></script>

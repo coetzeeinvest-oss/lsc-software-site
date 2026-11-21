@@ -2773,3 +2773,91 @@ footer .foot-desc {
   .feature-row p { grid-column: 1 / -1; }
   .feature-glyph .icon-duo { width: 40px; height: 40px; }
 }
+
+/* ---------- WhatsApp + call: hero buttons, support row, floating mobile buttons ---------- */
+
+/* WhatsApp green with navy text, the same dark-on-bright treatment as the amber button
+   (white on this green fails contrast). */
+.btn-whatsapp {
+  background: #25D366;
+  color: var(--text);
+}
+
+.btn-whatsapp:hover { background: #1FBF5B; }
+
+.hero-contact .btn .icon-duo,
+.btn-whatsapp .icon-duo {
+  width: 19px;
+  height: 19px;
+}
+
+.hero-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 12px;
+  margin-top: 24px;
+}
+
+.hero-contact-label {
+  flex: 1 0 100%;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+@media (max-width: 520px) {
+  .hero-contact .btn { flex: 1 1 100%; padding: 14px 22px; }
+}
+
+/* WhatsApp tile in the support card keeps its brand colour */
+.support-method-wa { color: #128C7E; }
+.support-method-wa .icon-wa { width: 24px; height: 24px; }
+.contact-method-icon .icon-wa { width: 22px; height: 22px; color: #128C7E; }
+
+/* Floating call + WhatsApp buttons: mobile and small tablets only. Desktop has the hero
+   buttons, the nav button and the footer. */
+.quick-contact {
+  position: fixed;
+  right: 12px;
+  bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.qc-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 12px 26px -8px rgba(14, 26, 58, 0.5), 0 0 0 1px rgba(14, 26, 58, 0.06);
+  transition: transform 0.2s var(--ease), background 0.15s ease;
+}
+
+.qc-btn:active { transform: scale(0.94); }
+.qc-btn .icon-duo { width: 24px; height: 24px; }
+.qc-btn .icon-wa { width: 26px; height: 26px; }
+
+.qc-wa { background: #25D366; color: var(--text); }
+.qc-wa:hover { background: #1FBF5B; }
+.qc-call { background: var(--navy-700); color: #fff; }
+.qc-call:hover { background: var(--navy-600); }
+
+@media (min-width: 900px) {
+  .quick-contact { display: none; }
+}
+
+/* Leave room under the footer so the floating buttons never sit on the copyright line */
+@media (max-width: 899px) {
+  footer { padding-bottom: 100px; }
+}
+
+@media print {
+  .quick-contact { display: none; }
+}
