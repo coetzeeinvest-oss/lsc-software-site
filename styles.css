@@ -2861,3 +2861,54 @@ footer .foot-desc {
 @media print {
   .quick-contact { display: none; }
 }
+
+/* ---------- Free invoice tool: homepage band ---------- */
+
+.tool-visual {
+  display: flex;
+  justify-content: center;
+  padding: clamp(24px, 4vw, 44px);
+  border-radius: 28px;
+  background: var(--tone-amber);
+}
+
+/* A small, pure-CSS invoice used as the picture for the free tool */
+.mock-invoice {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 22px 22px 34px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--shadow-lift);
+  color: var(--text);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.4;
+  transform: rotate(-1.5deg);
+}
+
+.mock-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.mock-top strong { display: block; font-size: 14px; }
+.mock-top small { display: block; color: var(--text-3); font-size: 10.5px; }
+.mock-top b { color: var(--navy-700); font-size: 17px; letter-spacing: 0.01em; }
+.mock-rule { height: 2px; margin: 12px 0 14px; background: var(--amber); }
+.mock-bill small { display: block; color: var(--text-4); font-size: 9px; font-weight: 700; letter-spacing: 0.09em; }
+.mock-bill strong { display: block; font-size: 13px; }
+.mock-bill span { color: var(--text-3); font-size: 11px; }
+.mock-lines { margin-top: 14px; border-top: 1px solid var(--border); }
+.mock-lines div { display: flex; justify-content: space-between; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 11.5px; }
+.mock-lines div span:last-child { font-weight: 700; white-space: nowrap; }
+.mock-total { display: flex; align-items: center; justify-content: space-between; margin: 14px 0 0 38%; padding: 8px 12px; border-left: 3px solid var(--amber); background: var(--amber-light); color: var(--navy-700); }
+.mock-total span { font-size: 9px; font-weight: 700; letter-spacing: 0.06em; }
+.mock-total b { font-size: 15px; }
+
+.mock-tread {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 5px;
+  background: repeating-linear-gradient(64deg, var(--navy-700) 0 10px, var(--amber) 10px 14px);
+}
