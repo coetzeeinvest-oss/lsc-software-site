@@ -20,9 +20,9 @@
   padding: clamp(28px, 5vw, 52px) 0 clamp(18px, 3vw, 28px);
 }
 
-.tool-hero-inner { max-width: 64ch; margin: 0 auto; }
+.tool-hero-inner { max-width: 900px; margin: 0 auto; }
 .tool-hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-bottom: 18px; }
-.tool-hero p.lede { margin-left: auto; margin-right: auto; margin-bottom: 18px; }
+.tool-hero p.lede { max-width: 60ch; margin-left: auto; margin-right: auto; margin-bottom: 18px; }
 
 .tool-section { padding-top: 8px; padding-bottom: clamp(32px, 5vw, 56px); }
 
