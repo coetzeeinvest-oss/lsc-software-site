@@ -2912,3 +2912,44 @@ footer .foot-desc {
   height: 5px;
   background: repeating-linear-gradient(64deg, var(--navy-700) 0 10px, var(--amber) 10px 14px);
 }
+
+/* ---------- Build-your-own-plan callout (pricing page) ---------- */
+
+.custom-plan {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  align-items: center;
+  max-width: 960px;
+  margin: clamp(28px, 4vw, 44px) auto 0;
+  padding: clamp(20px, 3vw, 28px);
+  border-radius: 24px;
+  background: var(--tone-sky);
+}
+
+@media (min-width: 761px) {
+  .custom-plan { grid-template-columns: auto 1fr auto; gap: 24px; }
+}
+
+.custom-plan-icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--navy);
+}
+
+.custom-plan-icon .icon-duo { width: 30px; height: 30px; }
+
+.custom-plan h3 {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.custom-plan p { margin: 0; font-size: 15.5px; color: var(--text-2); }
