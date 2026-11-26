@@ -687,9 +687,10 @@ h1 .accent { color: var(--navy); }
   position: absolute;
   right: clamp(-32px, -2vw, -8px);
   bottom: 0;
-  width: clamp(108px, 20vw, 196px);
-  box-shadow: var(--shadow-lift);
+  --w: clamp(112px, 20vw, 196px);
 }
+
+.browser img { display: block; }
 
 .float-chip {
   position: absolute;
@@ -903,7 +904,7 @@ section { padding: clamp(48px, 7vw, 88px) 0; }
 
 .core-visual {
   position: relative;
-  height: clamp(240px, 30vw, 330px);
+  height: clamp(280px, 32vw, 390px);
   border-radius: 16px;
   overflow: hidden;
   background: var(--tone-sky);
@@ -915,24 +916,47 @@ section { padding: clamp(48px, 7vw, 88px) 0; }
 .core-visual.tone-peach { background: var(--tone-peach); }
 .core-visual.tone-teal { background: var(--tone-teal); }
 
-/* Desktop screenshot bleeding off the right/bottom edge */
+/* Desktop screenshot in a browser window, bleeding off the right/bottom edge.
+   The screens are rendered 1440 px wide, so at this size the headings and
+   figures stay readable instead of turning into texture. */
 .core-visual .shot-desktop {
   position: absolute;
-  top: 28px;
-  left: 28px;
-  width: 150%;
+  top: 30px;
+  left: 6%;
+  width: 197%;
   max-width: none;
-  border-radius: 10px;
-  box-shadow: var(--shadow-lift);
+  border-radius: 12px;
+  box-shadow: 0 24px 48px -24px rgba(14, 26, 58, 0.5), 0 2px 8px rgba(14, 26, 58, 0.12);
 }
 
-/* Phone screenshot rising from the bottom edge */
+.core-visual .shot-desktop img { display: block; }
+
+/* Only the left ~47% of the 1440 px window is visible: the sidebar and the first
+   column of the page, cropped at the gutter between columns so no card is sliced
+   in half. Because left and width are both percentages of the card, the crop
+   falls on that gutter at every screen size. Keep the address on the visible side. */
+.core-visual .shot-desktop .browser-url { margin: 0 auto 0 14px; }
+
+/* The invoice on its own, rising from the bottom edge like the phones. */
+.core-visual .shot-panel {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(230px, 54%, 292px);
+  max-width: none;
+  height: auto;
+  filter: drop-shadow(0 22px 30px rgba(14, 26, 58, 0.22)) drop-shadow(0 2px 6px rgba(14, 26, 58, 0.12));
+}
+
+/* Phone rising from the bottom edge. Sized so the top ~60% of the screen
+   (the part a visitor sees) is big enough to read. */
 .core-visual .phone-frame {
+  --w: clamp(204px, 18vw, 246px);
   position: absolute;
   left: 50%;
-  top: 28px;
+  top: 30px;
   transform: translateX(-50%);
-  width: 190px;
 }
 
 .core-visual .float-chip {
@@ -1182,9 +1206,11 @@ section { padding: clamp(48px, 7vw, 88px) 0; }
 /* Mock: real screenshots in device frames */
 .device-mock-body {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 28px 22px;
+  height: clamp(340px, 34vw, 400px);
+  overflow: hidden;
+  padding: 26px 22px 0;
   margin: 8px 8px 0;
   border-radius: 14px;
   background: var(--tone-sky);
@@ -1193,34 +1219,48 @@ section { padding: clamp(48px, 7vw, 88px) 0; }
 .showcase > :nth-child(3n+2) .device-mock-body { background: var(--tone-amber); }
 .showcase > :nth-child(3n+3) .device-mock-body { background: var(--tone-mint); }
 
+/* Phones in the showcase are big enough to read and bleed off the bottom of their panel. */
+.device-mock-body .phone-frame { --w: clamp(206px, 17vw, 236px); }
+
+/* Phone mock-up. One variable sets the size (--w), and the bezel, corner
+   radius and camera pill all scale from it, so the same frame works at 130 px
+   in a thumbnail and at 240 px bleeding off a card. The screenshots are
+   390 x 844 (a status bar and home indicator are part of the image), which
+   is why the aspect ratio is not a round number. */
 .phone-frame {
-  width: 132px;
-  aspect-ratio: 9 / 19;
-  background: var(--text);
-  border-radius: 24px;
-  padding: 5px;
+  --w: 132px;
+  width: var(--w);
+  aspect-ratio: 1 / 2.092;
+  flex: none;
   position: relative;
-  box-shadow: 0 18px 34px -20px rgba(14, 26, 58, 0.5);
+  padding: calc(var(--w) * 0.031);
+  border-radius: calc(var(--w) * 0.15);
+  background: linear-gradient(150deg, #2a3668 0%, #0e1a3a 40%, #080f28 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+    0 28px 46px -22px rgba(14, 26, 58, 0.55),
+    0 4px 12px -4px rgba(14, 26, 58, 0.25);
 }
 
+/* The camera pill, sitting in the gap of the status bar. */
 .phone-notch {
   position: absolute;
-  top: 5px;
+  top: calc(var(--w) * 0.085);
   left: 50%;
   transform: translateX(-50%);
-  width: 44px;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.35);
-  border-radius: 3px;
+  width: calc(var(--w) * 0.235);
+  height: calc(var(--w) * 0.07);
+  background: #04060d;
+  border-radius: 999px;
   z-index: 1;
 }
 
 .phone-screen {
   width: 100%;
   height: 100%;
-  border-radius: 19px;
+  border-radius: calc(var(--w) * 0.12);
   overflow: hidden;
-  background: #fff;
+  background: #c8f0f8;
 }
 
 .phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
@@ -1248,14 +1288,14 @@ section { padding: clamp(48px, 7vw, 88px) 0; }
 }
 
 .pc-screen {
-  aspect-ratio: 1878 / 956;
+  aspect-ratio: 16 / 10;
 }
 
-.pc-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pc-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
 
 /* Hero: single phone screenshot, bare frame, no hand */
 
-.hero-phone-frame { width: 220px; }
+.hero-phone-frame { --w: 220px; }
 
 .hero-visual {
   position: relative;
@@ -1281,6 +1321,13 @@ section { padding: clamp(48px, 7vw, 88px) 0; }
 
 .monitor-frame .pc-bar { border-radius: 6px 6px 0 0; }
 .monitor-frame .pc-screen { border-radius: 0 0 6px 6px; }
+
+/* In the features page's Desktop tab the monitor bleeds off the right edge of
+   its panel, like the cards on the home page, so the screen is big enough to
+   read. The stand would be cropped away anyway. */
+.device-mock-body:has(.monitor-mock) { justify-content: flex-start; padding-left: 24px; padding-top: 30px; }
+.device-mock-body .monitor-mock { width: 168%; max-width: none; margin: 0; flex: none; }
+.device-mock-body .monitor-stand { display: none; }
 
 .monitor-stand { width: 70px; height: 34px; margin: 0 auto; position: relative; }
 
